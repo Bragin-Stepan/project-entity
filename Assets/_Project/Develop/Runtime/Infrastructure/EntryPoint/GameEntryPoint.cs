@@ -1,0 +1,54 @@
+﻿using Assets._Project.Develop.Runtime.Infrastructure.DI;
+using Assets._Project.Develop.Runtime.Utilities.ConfigsManagement;
+using Assets._Project.Develop.Runtime.Utilities.CoroutinesManagement;
+using Assets._Project.Develop.Runtime.Utilities.LoadingScreen;
+using Assets._Project.Develop.Runtime.Utilities.SceneManagement;
+using System.Collections;
+using _Project.Develop.Runtime.Utilities.DataManagement;
+using Assets._Project.Develop.Runtime.Gameplay.Infrastructure;
+using Assets._Project.Develop.Runtime.Utilities.DataManagement.DataProviders;
+using UnityEngine;
+
+namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
+{
+    public class GameEntryPoint : MonoBehaviour
+    {
+        private void Awake()
+        {
+            SetupAppSettings();
+
+            DIContainer projectContainer = new();
+            ProjectContextRegistrations.Process(projectContainer);
+
+            projectContainer.Initialize();
+            projectContainer.Resolve<ICoroutinesPerformer>().StartPerform(Initialize(projectContainer));
+        }
+
+        private void SetupAppSettings()
+        {
+            QualitySettings.vSyncCount = 0;
+            Application.targetFrameRate = 60;
+        }
+
+        private IEnumerator Initialize(DIContainer container)
+        {
+            ILoadingScreen loadingScreen = container.Resolve<ILoadingScreen>();
+            SceneSwitcherService sceneSwitcherService = container.Resolve<SceneSwitcherService>();
+            PlayerDataProvider playerDataProvider = container.Resolve<PlayerDataProvider>();
+
+            loadingScreen.Show();
+
+            yield return container.Resolve<ConfigsProviderService>().LoadAsync();
+            
+            yield return DataUtils.LoadProviderAsync(playerDataProvider);
+            // yield return DataUtils.LoadProviderAsync(SettingsDataProvider);
+            
+            yield return new WaitForSeconds(0.5f);
+
+            loadingScreen.Hide();
+
+            yield return sceneSwitcherService.ProcessSwitchTo(Scenes.Gameplay, new GameplayInputArgs(1));
+            // yield return sceneSwitcherService.ProcessSwitchTo(Scenes.MainMenu);
+        }
+    }
+}
