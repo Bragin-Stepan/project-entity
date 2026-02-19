@@ -461,5 +461,72 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanJump() {Value = value}); 
 		}
 
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.TakeDamageRequest TakeDamageRequestC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Damage.TakeDamageRequest>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent<System.Single> TakeDamageRequest => TakeDamageRequestC.Value;
+
+		public bool TryGetTakeDamageRequest(out _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.TakeDamageRequest component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTakeDamageRequest()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.TakeDamageRequest() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTakeDamageRequest(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.TakeDamageRequest() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.TakeDamageEvent TakeDamageEventC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Damage.TakeDamageEvent>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent<System.Single> TakeDamageEvent => TakeDamageEventC.Value;
+
+		public bool TryGetTakeDamageEvent(out _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.TakeDamageEvent component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTakeDamageEvent()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.TakeDamageEvent() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTakeDamageEvent(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.TakeDamageEvent() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.CanApplyDamage CanApplyDamageC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Damage.CanApplyDamage>();
+
+		public _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanApplyDamage => CanApplyDamageC.Value;
+
+		public bool TryGetCanApplyDamage(out _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.CanApplyDamage component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddCanApplyDamage(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.CanApplyDamage() {Value = value}); 
+		}
+
 	}
 }

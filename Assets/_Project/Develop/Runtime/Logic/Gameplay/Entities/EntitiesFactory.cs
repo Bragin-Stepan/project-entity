@@ -1,4 +1,5 @@
-﻿using _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.Systems;
+﻿using _Project.Develop.Runtime.Logic.Gameplay.Features.Damage;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.Systems;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Movement;
 using _Project.Develop.Runtime.Utilities.Conditions;
 using _Project.Develop.Runtime.Utils.InputManagement;
@@ -35,6 +36,8 @@ namespace _Project.Develop.Runtime.Entities
                 .AddRotationSpeed(new ReactiveVariable<float>(800))
                 .AddMaxHealth(new ReactiveVariable<float>(150))
                 .AddCurrentHealth(new ReactiveVariable<float>(150))
+                .AddTakeDamageRequest()
+                .AddTakeDamageEvent()
                 .AddIsDead()
                 .AddIsMoving()
                 .AddInDeathProcess()
@@ -53,14 +56,19 @@ namespace _Project.Develop.Runtime.Entities
             ICompositeCondition mustSelfRelease = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value))
                 .Add(new FuncCondition(() => entity.InDeathProcess.Value == false));
+            
+            ICompositeCondition canApplyDamage = new CompositeCondition()
+                .Add(new FuncCondition(() => entity.IsDead.Value == false));
 
             entity
                 .AddCanMove(canMove)
                 .AddCanRotate(canRotate)
+                .AddCanApplyDamage(canApplyDamage)
                 .AddMustDie(mustDie)
                 .AddMustSelfRelease(mustSelfRelease);
 
             entity
+                .AddSystem(new ApplyDamageSystem())
                 .AddSystem(new RigidbodyMovementSystem())
                 .AddSystem(new RigidbodyRotationSystem())
                 .AddSystem(new MoveDirectionByInputSystem(_playerInput))
