@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6565447619237781124}
   - component: {fileID: 8643992716899077862}
   m_Layer: 0
-  m_Name: TestEntity 1
+  m_Name: Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -35,7 +35,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagement
         public static class Entity
         {
             public const string TestEntity = "Entities/TestEntity";
-            public const string Ghost = "Entities/TestEntity";
+            public const string Ghost = "Entities/Ghost";
         }
         
         private static readonly Dictionary<Type, string> _scriptableObject = new()

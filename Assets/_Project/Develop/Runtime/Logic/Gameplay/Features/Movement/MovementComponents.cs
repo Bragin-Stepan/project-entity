@@ -15,5 +15,6 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Movement
     public class CanRotate : IEntityComponent { public ICompositeCondition Value; }
     
     public class JumpForce : IEntityComponent { public ReactiveVariable<float> Value; }
+    public class CanJump : IEntityComponent { public ICompositeCondition Value; }
     
 }

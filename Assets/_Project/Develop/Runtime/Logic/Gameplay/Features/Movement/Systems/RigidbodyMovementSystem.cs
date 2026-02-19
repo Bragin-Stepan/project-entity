@@ -1,4 +1,5 @@
 ﻿using _Project.Develop.Runtime.Entities;
+using _Project.Develop.Runtime.Utilities.Conditions;
 using _Project.Develop.Runtime.Utils.ReactiveManagement;
 using UnityEngine;
 
@@ -9,17 +10,32 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Movement
         private ReactiveVariable<Vector3> _moveDirection;
         private ReactiveVariable<float> _moveSpeed;
         private Rigidbody _rigidbody;
+        
+        private ReactiveVariable<bool> _isMoving;
 
+        private ICompositeCondition _canMove;
+        
         public void OnInit(Entity entity)
         {
             _moveDirection = entity.MoveDirection;
             _moveSpeed = entity.MoveSpeed;
             _rigidbody = entity.Rigidbody;
+            
+            _isMoving = entity.IsMoving;
+            _canMove = entity.CanMove;
         }
 
         public void OnUpdate(float deltaTime)
         {
+            if (_canMove.Evaluate() == false)
+            {
+                _rigidbody.velocity = Vector3.zero;
+                return;
+            }
+            
             Vector3 velocity = _moveDirection.Value.normalized * _moveSpeed.Value;
+            
+            _isMoving.Value = velocity.magnitude > 0;
 
             _rigidbody.velocity = velocity;
         }

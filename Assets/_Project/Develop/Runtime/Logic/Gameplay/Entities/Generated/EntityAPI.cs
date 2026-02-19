@@ -78,6 +78,188 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Common.NavMeshAgentComponent() {Value = value}); 
 		}
 
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.CurrentHealth CurrentHealthC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.CurrentHealth>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> CurrentHealth => CurrentHealthC.Value;
+
+		public bool TryGetCurrentHealth(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.CurrentHealth component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddCurrentHealth()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.CurrentHealth() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddCurrentHealth(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.CurrentHealth() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.MaxHealth MaxHealthC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.MaxHealth>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> MaxHealth => MaxHealthC.Value;
+
+		public bool TryGetMaxHealth(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.MaxHealth component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddMaxHealth()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.MaxHealth() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddMaxHealth(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.MaxHealth() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.IsDead IsDeadC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.IsDead>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> IsDead => IsDeadC.Value;
+
+		public bool TryGetIsDead(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.IsDead component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddIsDead()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.IsDead() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddIsDead(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.IsDead() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.MustDie MustDieC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.MustDie>();
+
+		public _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition MustDie => MustDieC.Value;
+
+		public bool TryGetMustDie(out _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.MustDie component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddMustDie(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.MustDie() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.MustSelfRelease MustSelfReleaseC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.MustSelfRelease>();
+
+		public _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition MustSelfRelease => MustSelfReleaseC.Value;
+
+		public bool TryGetMustSelfRelease(out _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.MustSelfRelease component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddMustSelfRelease(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.MustSelfRelease() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DeathProcessInitialTime DeathProcessInitialTimeC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DeathProcessInitialTime>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> DeathProcessInitialTime => DeathProcessInitialTimeC.Value;
+
+		public bool TryGetDeathProcessInitialTime(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DeathProcessInitialTime component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddDeathProcessInitialTime()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DeathProcessInitialTime() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddDeathProcessInitialTime(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DeathProcessInitialTime() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DeathProcessCurrentTime DeathProcessCurrentTimeC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DeathProcessCurrentTime>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> DeathProcessCurrentTime => DeathProcessCurrentTimeC.Value;
+
+		public bool TryGetDeathProcessCurrentTime(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DeathProcessCurrentTime component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddDeathProcessCurrentTime()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DeathProcessCurrentTime() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddDeathProcessCurrentTime(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DeathProcessCurrentTime() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.InDeathProcess InDeathProcessC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.InDeathProcess>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> InDeathProcess => InDeathProcessC.Value;
+
+		public bool TryGetInDeathProcess(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.InDeathProcess component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddInDeathProcess()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.InDeathProcess() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddInDeathProcess(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.InDeathProcess() {Value = value}); 
+		}
+
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveDirection MoveDirectionC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveDirection>();
 
 		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3> MoveDirection => MoveDirectionC.Value;
@@ -258,6 +440,25 @@ namespace _Project.Develop.Runtime.Entities
 		public _Project.Develop.Runtime.Entities.Entity AddJumpForce(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
 		{
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.JumpForce() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanJump CanJumpC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanJump>();
+
+		public _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanJump => CanJumpC.Value;
+
+		public bool TryGetCanJump(out _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanJump component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddCanJump(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanJump() {Value = value}); 
 		}
 
 	}

@@ -1,5 +1,5 @@
 ﻿using _Project.Develop.Runtime.Entities;
-using _Project.Develop.Runtime.Utilities.InputManagement;
+using _Project.Develop.Runtime.Utils.InputManagement;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using UnityEngine;
 
@@ -18,6 +18,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
         {
             _container = container;
             
+            _container.Resolve<IPlayerInput>().Enable();
             _entitiesFactory = _container.Resolve<EntitiesFactory>();
         }
 

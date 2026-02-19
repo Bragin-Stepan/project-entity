@@ -5,7 +5,7 @@ using System;
 using System.Collections;
 using _Project.Develop.Runtime.Entities;
 using _Project.Develop.Runtime.Logic.Gameplay.Features;
-using _Project.Develop.Runtime.Utilities.InputManagement;
+using _Project.Develop.Runtime.Utils.InputManagement;
 using UnityEngine;
 
 namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
@@ -18,7 +18,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
         private EntitiesLifeContext _entitiesLifeContext;
         private GameplayInputArgs _gameplayArgs;
         
-        private IPlayerInputService _playerInput;
+        private IPlayerInput _playerInput;
 
         public override void ProcessRegistrations(DIContainer container, IInputSceneArgs sceneArgs = null)
         {

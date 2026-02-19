@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using _Project.Develop.Runtime.Logic.Meta.Features.Wallet;
 using _Project.Develop.Runtime.UI;
 using _Project.Develop.Runtime.UI.Core;
-using _Project.Develop.Runtime.Utilities.InputManagement;
+using _Project.Develop.Runtime.Utils.InputManagement;
+using _Project.Develop.Runtime.Utils.InputManagement.Inputs;
 using _Project.Develop.Runtime.Utils.ReactiveManagement;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using Assets._Project.Develop.Runtime.Meta.Features.Wallet;
@@ -28,7 +29,9 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
             container.RegisterAsSingle(CreateSceneLoaderService);
             container.RegisterAsSingle(CreateSceneSwitcherService);
             
-            container.RegisterAsSingle<IPlayerInputService>(CreateDesktopPlayerInputService);
+            container.RegisterAsSingle(CreateInputFactory);
+            container.RegisterAsSingle<IPlayerInput>(CreatePlayerInput);
+            container.RegisterAsSingle<IUIInput>(CreateUIInput);
             
             container.RegisterAsSingle(CreateSaveLoadFactory);
             container.RegisterAsSingle<ISaveLoadService>(CreateSaveLoadService);
@@ -55,17 +58,17 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
                 c.Resolve<ILoadingScreen>(),
                 c);
 
-        private static SceneLoaderService CreateSceneLoaderService(DIContainer c)
-            => new();
+        private static SceneLoaderService CreateSceneLoaderService(DIContainer c) => new();
 
-        private static ResourcesAssetsLoader CreateResourcesAssetsLoader(DIContainer c)
-            => new();
+        private static ResourcesAssetsLoader CreateResourcesAssetsLoader(DIContainer c) => new();
         
-        private static DesktopPlayerInputService CreateDesktopPlayerInputService(DIContainer c)
-            => new();
+        private static InputFactory CreateInputFactory(DIContainer c) => new();
         
-        private static SaveLoadFactory CreateSaveLoadFactory(DIContainer c) 
-            => new();
+        private static PlayerInput CreatePlayerInput(DIContainer c) => c.Resolve<InputFactory>().CreatePlayerInput();
+        
+        private static UIInput CreateUIInput(DIContainer c) => c.Resolve<InputFactory>().CreateUIInput();
+        
+        private static SaveLoadFactory CreateSaveLoadFactory(DIContainer c) => new();
         
         private static PlayerDataProvider CreatePlayerDataProvider(DIContainer c)
             => new(c.Resolve<ISaveLoadService>(), c.Resolve<ConfigsProviderService>());
