@@ -19,12 +19,12 @@ namespace _Project.Develop.Runtime.Entities
             _monoEntitiesFactory = container.Resolve<MonoEntitiesFactory>();
             _playerInput = container.Resolve<IPlayerInputService>();
         }
-
-        public Entity CreateTestEntity(Vector3 position)
+        
+        public Entity CreateGhostEntity(Vector3 position)
         {
             Entity entity = CreateEmpty();
         
-            _monoEntitiesFactory.Create(entity, position, PathToResources.Entity.TestEntity);
+            _monoEntitiesFactory.Create(entity, position, PathToResources.Entity.Ghost);
         
             entity
                 .AddMoveDirection()
@@ -33,10 +33,8 @@ namespace _Project.Develop.Runtime.Entities
                 .AddRotationSpeed(new ReactiveVariable<float>(800));
         
             entity
-                .AddSystem(new CharacterControllerMovementSystem())
-                .AddSystem(new TransformRotationSystem())
-                // .AddSystem(new RigidbodyMovementSystem())
-                // .AddSystem(new RigidbodyRotationSystem())
+                .AddSystem(new RigidbodyMovementSystem())
+                .AddSystem(new RigidbodyRotationSystem())
                 .AddSystem(new MoveDirectionByInputSystem(_playerInput))
                 .AddSystem(new RotateDirectionByInputSystem(_playerInput));
         

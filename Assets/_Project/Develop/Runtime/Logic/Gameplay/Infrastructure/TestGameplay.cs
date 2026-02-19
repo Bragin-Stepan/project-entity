@@ -23,7 +23,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
 
         public void Run()
         {
-            _entity = _entitiesFactory.CreateTestEntity(Vector3.zero);
+            _entity = _entitiesFactory.CreateGhostEntity(Vector3.zero);
 
             _isRunning = true;
         }
