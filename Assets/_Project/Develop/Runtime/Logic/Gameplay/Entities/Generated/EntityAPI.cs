@@ -78,6 +78,149 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Common.NavMeshAgentComponent() {Value = value}); 
 		}
 
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.CapsuleColliderComponent CapsuleColliderC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.CapsuleColliderComponent>();
+
+		public UnityEngine.CapsuleCollider CapsuleCollider => CapsuleColliderC.Value;
+
+		public bool TryGetCapsuleCollider(out UnityEngine.CapsuleCollider value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.CapsuleColliderComponent component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(UnityEngine.CapsuleCollider);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddCapsuleCollider(UnityEngine.CapsuleCollider value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.CapsuleColliderComponent() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.ContactsDetectingMask ContactsDetectingMaskC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.ContactsDetectingMask>();
+
+		public UnityEngine.LayerMask ContactsDetectingMask => ContactsDetectingMaskC.Value;
+
+		public bool TryGetContactsDetectingMask(out UnityEngine.LayerMask value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.ContactsDetectingMask component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(UnityEngine.LayerMask);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddContactsDetectingMask(UnityEngine.LayerMask value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.ContactsDetectingMask() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.ContactCollidersBuffer ContactCollidersBufferC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.ContactCollidersBuffer>();
+
+		public _Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> ContactCollidersBuffer => ContactCollidersBufferC.Value;
+
+		public bool TryGetContactCollidersBuffer(out _Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.ContactCollidersBuffer component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddContactCollidersBuffer(_Project.Develop.Runtime.Utilities.Buffer<UnityEngine.Collider> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.ContactCollidersBuffer() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.ContactEntitiesBuffer ContactEntitiesBufferC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.ContactEntitiesBuffer>();
+
+		public _Project.Develop.Runtime.Utilities.Buffer<_Project.Develop.Runtime.Entities.Entity> ContactEntitiesBuffer => ContactEntitiesBufferC.Value;
+
+		public bool TryGetContactEntitiesBuffer(out _Project.Develop.Runtime.Utilities.Buffer<_Project.Develop.Runtime.Entities.Entity> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.ContactEntitiesBuffer component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utilities.Buffer<_Project.Develop.Runtime.Entities.Entity>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddContactEntitiesBuffer(_Project.Develop.Runtime.Utilities.Buffer<_Project.Develop.Runtime.Entities.Entity> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.ContactEntitiesBuffer() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.DeathMask DeathMaskC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.DeathMask>();
+
+		public UnityEngine.LayerMask DeathMask => DeathMaskC.Value;
+
+		public bool TryGetDeathMask(out UnityEngine.LayerMask value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.DeathMask component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(UnityEngine.LayerMask);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddDeathMask(UnityEngine.LayerMask value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.DeathMask() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.IsTouchDeathMask IsTouchDeathMaskC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.IsTouchDeathMask>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> IsTouchDeathMask => IsTouchDeathMaskC.Value;
+
+		public bool TryGetIsTouchDeathMask(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.IsTouchDeathMask component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddIsTouchDeathMask()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.IsTouchDeathMask() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddIsTouchDeathMask(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.IsTouchDeathMask() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.IsTouchAnotherTeam IsTouchAnotherTeamC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.IsTouchAnotherTeam>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> IsTouchAnotherTeam => IsTouchAnotherTeamC.Value;
+
+		public bool TryGetIsTouchAnotherTeam(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.IsTouchAnotherTeam component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddIsTouchAnotherTeam()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.IsTouchAnotherTeam() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddIsTouchAnotherTeam(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.IsTouchAnotherTeam() {Value = value}); 
+		}
+
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.CurrentHealth CurrentHealthC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.CurrentHealth>();
 
 		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> CurrentHealth => CurrentHealthC.Value;

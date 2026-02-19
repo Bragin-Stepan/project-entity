@@ -1,6 +1,8 @@
 ﻿using _Project.Develop.Runtime.Logic.Gameplay.Features.Damage;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.Systems;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Movement;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.Systems;
+using _Project.Develop.Runtime.Utilities;
 using _Project.Develop.Runtime.Utilities.Conditions;
 using _Project.Develop.Runtime.Utils.InputManagement;
 using _Project.Develop.Runtime.Utils.ReactiveManagement;
@@ -14,10 +16,12 @@ namespace _Project.Develop.Runtime.Entities
     {
         private readonly EntitiesLifeContext _entitiesLifeContext;
         private readonly MonoEntitiesFactory _monoEntitiesFactory;
+        private readonly CollidersRegistryService _collidersRegistryService;
         private readonly IPlayerInput _playerInput;
 
         public EntitiesFactory(DIContainer container)
         {
+            _collidersRegistryService = container.Resolve<CollidersRegistryService>();
             _entitiesLifeContext = container.Resolve<EntitiesLifeContext>();
             _monoEntitiesFactory = container.Resolve<MonoEntitiesFactory>();
             _playerInput = container.Resolve<IPlayerInput>();
@@ -30,6 +34,9 @@ namespace _Project.Develop.Runtime.Entities
             _monoEntitiesFactory.Create(entity, position, PathToResources.Entity.Ghost);
 
             entity
+                .AddContactsDetectingMask(Layers.CharactersMask)
+                .AddContactCollidersBuffer(new Buffer<Collider>(64))
+                .AddContactEntitiesBuffer(new Buffer<Entity>(64))
                 .AddMoveDirection()
                 .AddRotateDirection()
                 .AddMoveSpeed(new ReactiveVariable<float>(10))
@@ -69,10 +76,12 @@ namespace _Project.Develop.Runtime.Entities
 
             entity
                 .AddSystem(new ApplyDamageSystem())
-                .AddSystem(new RigidbodyMovementSystem())
-                .AddSystem(new RigidbodyRotationSystem())
+                .AddSystem(new BodyContactsDetectingSystem())
+                .AddSystem(new BodyContactsEntitiesFilterSystem(_collidersRegistryService))
                 .AddSystem(new MoveDirectionByInputSystem(_playerInput))
                 .AddSystem(new RotateDirectionByInputSystem(_playerInput))
+                .AddSystem(new RigidbodyMovementSystem())
+                .AddSystem(new RigidbodyRotationSystem())
                 .AddSystem(new DeathSwitcherSystem())
                 .AddSystem(new DeathProcessTimerSystem())
                 .AddSystem(new SelfReleaseSystem(_entitiesLifeContext));
