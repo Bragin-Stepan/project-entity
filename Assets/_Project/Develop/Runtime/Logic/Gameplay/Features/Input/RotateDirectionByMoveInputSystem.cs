@@ -5,13 +5,13 @@ using UnityEngine;
 
 namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Movement
 {
-    public class RotateDirectionByInputSystem : IInitializableSystem, IUpdatableSystem
+    public class RotateDirectionByMoveInputSystem : IInitializableSystem, IUpdatableSystem
     {
         private readonly IPlayerInput _playerInput;
         
         private ReactiveVariable<Vector3> _rotateDirection;
 
-        public RotateDirectionByInputSystem(IPlayerInput playerInput)
+        public RotateDirectionByMoveInputSystem(IPlayerInput playerInput)
         {
             _playerInput = playerInput;
         }

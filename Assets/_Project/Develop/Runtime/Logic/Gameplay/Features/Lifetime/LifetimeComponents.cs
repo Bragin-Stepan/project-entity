@@ -1,6 +1,8 @@
-﻿using _Project.Develop.Runtime.Entities;
+﻿using System.Collections.Generic;
+using _Project.Develop.Runtime.Entities;
 using _Project.Develop.Runtime.Utilities.Conditions;
 using _Project.Develop.Runtime.Utils.ReactiveManagement;
+using UnityEngine;
 
 namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime
 {
@@ -14,4 +16,6 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime
     public class DeathProcessInitialTime : IEntityComponent { public ReactiveVariable<float> Value; }
     public class DeathProcessCurrentTime : IEntityComponent { public ReactiveVariable<float> Value; }
     public class InDeathProcess : IEntityComponent { public ReactiveVariable<bool> Value; }
+    
+    public class DisableCollidersOnDeath : IEntityComponent { public List<Collider> Value; }
 }

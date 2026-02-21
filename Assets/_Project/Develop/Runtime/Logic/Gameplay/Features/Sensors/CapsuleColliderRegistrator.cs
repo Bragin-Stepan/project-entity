@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors
 {
-    public class CapsuleColliderRegistratorEntityRegistrator : MonoEntityRegistrator
+    public class CapsuleColliderRegistrator : MonoEntityRegistrator
     {
         [SerializeField] private CapsuleCollider _collider; 
         

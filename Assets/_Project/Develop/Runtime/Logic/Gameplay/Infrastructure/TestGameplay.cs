@@ -10,8 +10,6 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
         private DIContainer _container;
         private EntitiesFactory _entitiesFactory;
 
-        private Entity _entity;
-
         private bool _isRunning;
 
         public void Initialize(DIContainer container)
@@ -24,7 +22,8 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
 
         public void Run()
         {
-            _entity = _entitiesFactory.CreateGhostEntity(Vector3.zero);
+            _entitiesFactory.CreateGhostEntity(Vector3.zero + Vector3.forward * 5);
+            _entitiesFactory.CreateHeroEntity(Vector3.zero);
 
             _isRunning = true;
         }

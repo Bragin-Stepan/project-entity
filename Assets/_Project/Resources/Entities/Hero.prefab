@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 1178908605964963484}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.015, z: 0.094}
-  m_LocalScale: {x: 1, y: 0.8659927, z: 1}
+  m_LocalPosition: {x: 0, y: 0.21, z: 0.22}
+  m_LocalScale: {x: 0.9145653, y: 0.9167472, z: 0.9145653}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1769490595927411179}
@@ -111,7 +111,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.58533114, z: 1}
+  m_LocalScale: {x: 1, y: 0.83449, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1769490595927411179}
@@ -227,7 +227,7 @@ PrefabInstance:
     - target: {fileID: 8474685674288101080, guid: 3ff07ac6b3173eb45a2ebf7f8d2afb2f,
         type: 3}
       propertyPath: m_Name
-      value: Ghost
+      value: Hero
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -369,7 +369,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

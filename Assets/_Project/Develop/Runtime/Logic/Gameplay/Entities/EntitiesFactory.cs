@@ -27,16 +27,13 @@ namespace _Project.Develop.Runtime.Entities
             _playerInput = container.Resolve<IPlayerInput>();
         }
         
-        public Entity CreateGhostEntity(Vector3 position)
+        public Entity CreateHeroEntity(Vector3 position)
         {
             Entity entity = CreateEmpty();
         
-            _monoEntitiesFactory.Create(entity, position, PathToResources.Entity.Ghost);
+            _monoEntitiesFactory.Create(entity, position, PathToResources.Entity.Hero);
 
             entity
-                .AddContactsDetectingMask(Layers.CharactersMask)
-                .AddContactCollidersBuffer(new Buffer<Collider>(64))
-                .AddContactEntitiesBuffer(new Buffer<Entity>(64))
                 .AddMoveDirection()
                 .AddRotateDirection()
                 .AddMoveSpeed(new ReactiveVariable<float>(10))
@@ -75,15 +72,79 @@ namespace _Project.Develop.Runtime.Entities
                 .AddMustSelfRelease(mustSelfRelease);
 
             entity
+                .AddSystem(new MoveDirectionByInputSystem(_playerInput))
+                .AddSystem(new RotateDirectionByMoveInputSystem(_playerInput))
+                .AddSystem(new RigidbodyMovementSystem())
+                .AddSystem(new RigidbodyRotationSystem())
                 .AddSystem(new ApplyDamageSystem())
+                .AddSystem(new DeathSwitcherSystem())
+                .AddSystem(new DeathProcessTimerSystem())
+                .AddSystem(new DisableCollidersOnDeathSystem())
+                .AddSystem(new SelfReleaseSystem(_entitiesLifeContext));
+        
+            _entitiesLifeContext.Add(entity);
+        
+            return entity;
+        }
+        
+        public Entity CreateGhostEntity(Vector3 position)
+        {
+            Entity entity = CreateEmpty();
+        
+            _monoEntitiesFactory.Create(entity, position, PathToResources.Entity.Ghost);
+
+            entity
+                .AddContactsDetectingMask(Layers.CharactersMask)
+                .AddContactCollidersBuffer(new Buffer<Collider>(64))
+                .AddContactEntitiesBuffer(new Buffer<Entity>(64))
+                .AddMoveDirection()
+                .AddRotateDirection()
+                .AddMoveSpeed(new ReactiveVariable<float>(10))
+                .AddRotationSpeed(new ReactiveVariable<float>(800))
+                .AddMaxHealth(new ReactiveVariable<float>(150))
+                .AddCurrentHealth(new ReactiveVariable<float>(150))
+                .AddBodyContactDamage(new ReactiveVariable<float>(50))
+                .AddTakeDamageRequest()
+                .AddTakeDamageEvent()
+                .AddIsDead()
+                .AddIsMoving()
+                .AddInDeathProcess()
+                .AddDeathProcessInitialTime(new ReactiveVariable<float>(2))
+                .AddDeathProcessCurrentTime();
+            
+            ICompositeCondition canMove = new CompositeCondition()
+                .Add(new FuncCondition(() => entity.IsDead.Value == false));
+
+            ICompositeCondition canRotate = new CompositeCondition()
+                .Add(new FuncCondition(() => entity.IsDead.Value == false));
+            
+            ICompositeCondition mustDie = new CompositeCondition()
+                .Add(new FuncCondition(() => entity.CurrentHealth.Value <= 0));
+
+            ICompositeCondition mustSelfRelease = new CompositeCondition()
+                .Add(new FuncCondition(() => entity.IsDead.Value))
+                .Add(new FuncCondition(() => entity.InDeathProcess.Value == false));
+            
+            ICompositeCondition canApplyDamage = new CompositeCondition()
+                .Add(new FuncCondition(() => entity.IsDead.Value == false));
+
+            entity
+                .AddCanMove(canMove)
+                .AddCanRotate(canRotate)
+                .AddCanApplyDamage(canApplyDamage)
+                .AddMustDie(mustDie)
+                .AddMustSelfRelease(mustSelfRelease);
+
+            entity
                 .AddSystem(new BodyContactsDetectingSystem())
                 .AddSystem(new BodyContactsEntitiesFilterSystem(_collidersRegistryService))
-                .AddSystem(new MoveDirectionByInputSystem(_playerInput))
-                .AddSystem(new RotateDirectionByInputSystem(_playerInput))
+                .AddSystem(new DealDamageOnContactSystem())
+                .AddSystem(new ApplyDamageSystem())
                 .AddSystem(new RigidbodyMovementSystem())
                 .AddSystem(new RigidbodyRotationSystem())
                 .AddSystem(new DeathSwitcherSystem())
                 .AddSystem(new DeathProcessTimerSystem())
+                .AddSystem(new DisableCollidersOnDeathSystem())
                 .AddSystem(new SelfReleaseSystem(_entitiesLifeContext));
         
             _entitiesLifeContext.Add(entity);

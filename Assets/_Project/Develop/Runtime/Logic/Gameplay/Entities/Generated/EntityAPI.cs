@@ -403,6 +403,30 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.InDeathProcess() {Value = value}); 
 		}
 
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DisableCollidersOnDeath DisableCollidersOnDeathC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DisableCollidersOnDeath>();
+
+		public System.Collections.Generic.List<UnityEngine.Collider> DisableCollidersOnDeath => DisableCollidersOnDeathC.Value;
+
+		public bool TryGetDisableCollidersOnDeath(out System.Collections.Generic.List<UnityEngine.Collider> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DisableCollidersOnDeath component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(System.Collections.Generic.List<UnityEngine.Collider>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddDisableCollidersOnDeath()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DisableCollidersOnDeath() { Value = new System.Collections.Generic.List<UnityEngine.Collider>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddDisableCollidersOnDeath(System.Collections.Generic.List<UnityEngine.Collider> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DisableCollidersOnDeath() {Value = value}); 
+		}
+
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveDirection MoveDirectionC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveDirection>();
 
 		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3> MoveDirection => MoveDirectionC.Value;
@@ -669,6 +693,30 @@ namespace _Project.Develop.Runtime.Entities
 		public _Project.Develop.Runtime.Entities.Entity AddCanApplyDamage(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
 		{
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.CanApplyDamage() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.BodyContactDamage BodyContactDamageC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Damage.BodyContactDamage>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> BodyContactDamage => BodyContactDamageC.Value;
+
+		public bool TryGetBodyContactDamage(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.BodyContactDamage component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddBodyContactDamage()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.BodyContactDamage() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddBodyContactDamage(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.BodyContactDamage() {Value = value}); 
 		}
 
 	}
