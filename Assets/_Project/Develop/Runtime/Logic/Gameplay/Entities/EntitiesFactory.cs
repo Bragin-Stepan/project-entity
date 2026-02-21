@@ -53,7 +53,9 @@ namespace _Project.Develop.Runtime.Entities
                 .AddInAttackProcess()
                 .AddStartAttackRequest()
                 .AddStartAttackEvent()
-                .AddEndAttackEvent();
+                .AddEndAttackEvent()
+                .AddAttackDelayTime(new ReactiveVariable<float>(2))
+                .AddAttackDelayEndEvent();
             
             ICompositeCondition canMove = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false));
@@ -92,6 +94,7 @@ namespace _Project.Develop.Runtime.Entities
                 
                 .AddSystem(new StartAttackSystem())
                 .AddSystem(new ProcessAttackTimerSystem())
+                .AddSystem(new AttackDelayEndTriggerSystem())
                 .AddSystem(new EndAttackSystem())
                 
                 .AddSystem(new ApplyDamageSystem())

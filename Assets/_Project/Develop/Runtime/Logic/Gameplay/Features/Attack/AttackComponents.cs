@@ -14,9 +14,9 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Attack
 
     public class AttackProcessInitialTime : IEntityComponent { public ReactiveVariable<float> Value; }
     public class AttackProcessCurrentTime : IEntityComponent { public ReactiveVariable<float> Value; }
-
-    public class AttackDelayTime : IEntityComponent { public ReactiveVariable<float> Value; }
-    public class AttackDelayEndEvent : IEntityComponent { public ReactiveEvent Value; }
     
     public class InAttackProcess : IEntityComponent { public ReactiveVariable<bool> Value; }
+    
+    public class AttackDelayTime : IEntityComponent { public ReactiveVariable<float> Value; }
+    public class AttackDelayEndEvent : IEntityComponent { public ReactiveEvent Value; }
 }

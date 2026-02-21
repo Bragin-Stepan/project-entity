@@ -858,6 +858,30 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackProcessCurrentTime() {Value = value}); 
 		}
 
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess InAttackProcessC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> InAttackProcess => InAttackProcessC.Value;
+
+		public bool TryGetInAttackProcess(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddInAttackProcess()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddInAttackProcess(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess() {Value = value}); 
+		}
+
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackDelayTime AttackDelayTimeC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackDelayTime>();
 
 		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> AttackDelayTime => AttackDelayTimeC.Value;
@@ -904,30 +928,6 @@ namespace _Project.Develop.Runtime.Entities
 		public _Project.Develop.Runtime.Entities.Entity AddAttackDelayEndEvent(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent value)
 		{
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackDelayEndEvent() {Value = value}); 
-		}
-
-		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess InAttackProcessC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess>();
-
-		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> InAttackProcess => InAttackProcessC.Value;
-
-		public bool TryGetInAttackProcess(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
-		{
-			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess component);
-			if(result)
-				value = component.Value;
-			else
-				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>);
-			return result;
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddInAttackProcess()
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>() }); 
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddInAttackProcess(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess() {Value = value}); 
 		}
 
 	}
