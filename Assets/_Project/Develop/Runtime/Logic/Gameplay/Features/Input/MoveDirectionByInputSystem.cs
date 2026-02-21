@@ -3,7 +3,7 @@ using _Project.Develop.Runtime.Utils.InputManagement;
 using _Project.Develop.Runtime.Utils.ReactiveManagement;
 using UnityEngine;
 
-namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Movement
+namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Input
 {
     public class MoveDirectionByInputSystem : IInitializableSystem, IUpdatableSystem
     {

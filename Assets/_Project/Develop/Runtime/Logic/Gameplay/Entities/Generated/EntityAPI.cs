@@ -221,6 +221,207 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.IsTouchAnotherTeam() {Value = value}); 
 		}
 
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveDirection MoveDirectionC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveDirection>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3> MoveDirection => MoveDirectionC.Value;
+
+		public bool TryGetMoveDirection(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveDirection component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddMoveDirection()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveDirection() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddMoveDirection(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveDirection() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveSpeed MoveSpeedC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveSpeed>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> MoveSpeed => MoveSpeedC.Value;
+
+		public bool TryGetMoveSpeed(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveSpeed component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddMoveSpeed()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveSpeed() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddMoveSpeed(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveSpeed() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.IsMoving IsMovingC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.IsMoving>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> IsMoving => IsMovingC.Value;
+
+		public bool TryGetIsMoving(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.IsMoving component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddIsMoving()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.IsMoving() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddIsMoving(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.IsMoving() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanMove CanMoveC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanMove>();
+
+		public _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanMove => CanMoveC.Value;
+
+		public bool TryGetCanMove(out _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanMove component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddCanMove(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanMove() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotateDirection RotateDirectionC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotateDirection>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3> RotateDirection => RotateDirectionC.Value;
+
+		public bool TryGetRotateDirection(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotateDirection component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddRotateDirection()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotateDirection() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddRotateDirection(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotateDirection() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotationSpeed RotationSpeedC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotationSpeed>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> RotationSpeed => RotationSpeedC.Value;
+
+		public bool TryGetRotationSpeed(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotationSpeed component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddRotationSpeed()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotationSpeed() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddRotationSpeed(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotationSpeed() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanRotate CanRotateC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanRotate>();
+
+		public _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanRotate => CanRotateC.Value;
+
+		public bool TryGetCanRotate(out _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanRotate component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddCanRotate(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanRotate() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.JumpForce JumpForceC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.JumpForce>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> JumpForce => JumpForceC.Value;
+
+		public bool TryGetJumpForce(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.JumpForce component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddJumpForce()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.JumpForce() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddJumpForce(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.JumpForce() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanJump CanJumpC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanJump>();
+
+		public _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanJump => CanJumpC.Value;
+
+		public bool TryGetCanJump(out _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanJump component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddCanJump(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanJump() {Value = value}); 
+		}
+
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.CurrentHealth CurrentHealthC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.CurrentHealth>();
 
 		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> CurrentHealth => CurrentHealthC.Value;
@@ -427,207 +628,6 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.DisableCollidersOnDeath() {Value = value}); 
 		}
 
-		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveDirection MoveDirectionC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveDirection>();
-
-		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3> MoveDirection => MoveDirectionC.Value;
-
-		public bool TryGetMoveDirection(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3> value)
-		{
-			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveDirection component);
-			if(result)
-				value = component.Value;
-			else
-				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3>);
-			return result;
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddMoveDirection()
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveDirection() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3>() }); 
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddMoveDirection(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3> value)
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveDirection() {Value = value}); 
-		}
-
-		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveSpeed MoveSpeedC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveSpeed>();
-
-		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> MoveSpeed => MoveSpeedC.Value;
-
-		public bool TryGetMoveSpeed(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
-		{
-			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveSpeed component);
-			if(result)
-				value = component.Value;
-			else
-				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
-			return result;
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddMoveSpeed()
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveSpeed() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddMoveSpeed(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.MoveSpeed() {Value = value}); 
-		}
-
-		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.IsMoving IsMovingC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.IsMoving>();
-
-		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> IsMoving => IsMovingC.Value;
-
-		public bool TryGetIsMoving(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
-		{
-			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.IsMoving component);
-			if(result)
-				value = component.Value;
-			else
-				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>);
-			return result;
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddIsMoving()
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.IsMoving() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>() }); 
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddIsMoving(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.IsMoving() {Value = value}); 
-		}
-
-		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanMove CanMoveC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanMove>();
-
-		public _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanMove => CanMoveC.Value;
-
-		public bool TryGetCanMove(out _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
-		{
-			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanMove component);
-			if(result)
-				value = component.Value;
-			else
-				value = default(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
-			return result;
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddCanMove(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanMove() {Value = value}); 
-		}
-
-		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotateDirection RotateDirectionC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotateDirection>();
-
-		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3> RotateDirection => RotateDirectionC.Value;
-
-		public bool TryGetRotateDirection(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3> value)
-		{
-			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotateDirection component);
-			if(result)
-				value = component.Value;
-			else
-				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3>);
-			return result;
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddRotateDirection()
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotateDirection() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3>() }); 
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddRotateDirection(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<UnityEngine.Vector3> value)
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotateDirection() {Value = value}); 
-		}
-
-		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotationSpeed RotationSpeedC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotationSpeed>();
-
-		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> RotationSpeed => RotationSpeedC.Value;
-
-		public bool TryGetRotationSpeed(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
-		{
-			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotationSpeed component);
-			if(result)
-				value = component.Value;
-			else
-				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
-			return result;
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddRotationSpeed()
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotationSpeed() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddRotationSpeed(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.RotationSpeed() {Value = value}); 
-		}
-
-		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanRotate CanRotateC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanRotate>();
-
-		public _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanRotate => CanRotateC.Value;
-
-		public bool TryGetCanRotate(out _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
-		{
-			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanRotate component);
-			if(result)
-				value = component.Value;
-			else
-				value = default(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
-			return result;
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddCanRotate(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanRotate() {Value = value}); 
-		}
-
-		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.JumpForce JumpForceC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.JumpForce>();
-
-		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> JumpForce => JumpForceC.Value;
-
-		public bool TryGetJumpForce(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
-		{
-			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.JumpForce component);
-			if(result)
-				value = component.Value;
-			else
-				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
-			return result;
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddJumpForce()
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.JumpForce() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddJumpForce(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.JumpForce() {Value = value}); 
-		}
-
-		public _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanJump CanJumpC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanJump>();
-
-		public _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanJump => CanJumpC.Value;
-
-		public bool TryGetCanJump(out _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
-		{
-			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanJump component);
-			if(result)
-				value = component.Value;
-			else
-				value = default(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
-			return result;
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddCanJump(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanJump() {Value = value}); 
-		}
-
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.TakeDamageRequest TakeDamageRequestC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Damage.TakeDamageRequest>();
 
 		public _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent<System.Single> TakeDamageRequest => TakeDamageRequestC.Value;
@@ -719,6 +719,68 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.BodyContactDamage() {Value = value}); 
 		}
 
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InstantAttackDamage InstantAttackDamageC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InstantAttackDamage>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> InstantAttackDamage => InstantAttackDamageC.Value;
+
+		public bool TryGetInstantAttackDamage(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InstantAttackDamage component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddInstantAttackDamage()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InstantAttackDamage() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddInstantAttackDamage(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InstantAttackDamage() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.ShootPoint ShootPointC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.ShootPoint>();
+
+		public UnityEngine.Transform ShootPoint => ShootPointC.Value;
+
+		public bool TryGetShootPoint(out UnityEngine.Transform value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.ShootPoint component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(UnityEngine.Transform);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddShootPoint(UnityEngine.Transform value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.ShootPoint() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.CanStartAttack CanStartAttackC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.CanStartAttack>();
+
+		public _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanStartAttack => CanStartAttackC.Value;
+
+		public bool TryGetCanStartAttack(out _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.CanStartAttack component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddCanStartAttack(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.CanStartAttack() {Value = value}); 
+		}
+
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.StartAttackRequest StartAttackRequestC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.StartAttackRequest>();
 
 		public _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent StartAttackRequest => StartAttackRequestC.Value;
@@ -765,25 +827,6 @@ namespace _Project.Develop.Runtime.Entities
 		public _Project.Develop.Runtime.Entities.Entity AddStartAttackEvent(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent value)
 		{
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.StartAttackEvent() {Value = value}); 
-		}
-
-		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.CanStartAttack CanStartAttackC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.CanStartAttack>();
-
-		public _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanStartAttack => CanStartAttackC.Value;
-
-		public bool TryGetCanStartAttack(out _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
-		{
-			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.CanStartAttack component);
-			if(result)
-				value = component.Value;
-			else
-				value = default(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
-			return result;
-		}
-
-		public _Project.Develop.Runtime.Entities.Entity AddCanStartAttack(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
-		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.CanStartAttack() {Value = value}); 
 		}
 
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.EndAttackEvent EndAttackEventC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.EndAttackEvent>();
@@ -928,6 +971,121 @@ namespace _Project.Develop.Runtime.Entities
 		public _Project.Develop.Runtime.Entities.Entity AddAttackDelayEndEvent(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent value)
 		{
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackDelayEndEvent() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.MustCancelAttack MustCancelAttackC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.MustCancelAttack>();
+
+		public _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition MustCancelAttack => MustCancelAttackC.Value;
+
+		public bool TryGetMustCancelAttack(out _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.MustCancelAttack component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddMustCancelAttack(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.MustCancelAttack() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCanceledEvent AttackCanceledEventC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCanceledEvent>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent AttackCanceledEvent => AttackCanceledEventC.Value;
+
+		public bool TryGetAttackCanceledEvent(out _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCanceledEvent component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddAttackCanceledEvent()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCanceledEvent() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddAttackCanceledEvent(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCanceledEvent() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCooldownInitialTime AttackCooldownInitialTimeC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCooldownInitialTime>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> AttackCooldownInitialTime => AttackCooldownInitialTimeC.Value;
+
+		public bool TryGetAttackCooldownInitialTime(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCooldownInitialTime component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddAttackCooldownInitialTime()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCooldownInitialTime() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddAttackCooldownInitialTime(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCooldownInitialTime() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCooldownCurrentTime AttackCooldownCurrentTimeC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCooldownCurrentTime>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> AttackCooldownCurrentTime => AttackCooldownCurrentTimeC.Value;
+
+		public bool TryGetAttackCooldownCurrentTime(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCooldownCurrentTime component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddAttackCooldownCurrentTime()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCooldownCurrentTime() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddAttackCooldownCurrentTime(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackCooldownCurrentTime() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackCooldown InAttackCooldownC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackCooldown>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> InAttackCooldown => InAttackCooldownC.Value;
+
+		public bool TryGetInAttackCooldown(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackCooldown component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddInAttackCooldown()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackCooldown() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddInAttackCooldown(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackCooldown() {Value = value}); 
 		}
 
 	}

@@ -32,6 +32,11 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.Systems
             {
                 _inAttackProcess.Value = true;
                 _startAttackEvent.Invoke();
+                Debug.Log("Старт атаки");
+            }
+            else
+            {
+                Debug.Log("Не могу атаковать!");
             }
         }
 

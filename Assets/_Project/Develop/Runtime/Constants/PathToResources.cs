@@ -34,6 +34,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagement
         
         public static class Entity
         {
+            public const string Projectile = "Entities/Projectile";
             public const string Hero = "Entities/Hero";
             public const string Ghost = "Entities/Ghost";
         }
