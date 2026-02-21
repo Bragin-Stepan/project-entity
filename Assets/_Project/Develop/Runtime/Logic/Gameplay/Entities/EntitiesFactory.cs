@@ -1,4 +1,5 @@
-﻿using _Project.Develop.Runtime.Logic.Gameplay.Features.Damage;
+﻿using _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.Systems;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.Damage;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.Systems;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Movement;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.Systems;
@@ -46,7 +47,13 @@ namespace _Project.Develop.Runtime.Entities
                 .AddIsMoving()
                 .AddInDeathProcess()
                 .AddDeathProcessInitialTime(new ReactiveVariable<float>(2))
-                .AddDeathProcessCurrentTime();
+                .AddDeathProcessCurrentTime()
+                .AddAttackProcessInitialTime(new ReactiveVariable<float>(3))
+                .AddAttackProcessCurrentTime()
+                .AddInAttackProcess()
+                .AddStartAttackRequest()
+                .AddStartAttackEvent()
+                .AddEndAttackEvent();
             
             ICompositeCondition canMove = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false));
@@ -63,12 +70,18 @@ namespace _Project.Develop.Runtime.Entities
             
             ICompositeCondition canApplyDamage = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false));
+            
+            ICompositeCondition canStartAttack = new CompositeCondition()
+                .Add(new FuncCondition(() => entity.IsDead.Value == false))
+                .Add(new FuncCondition(() => entity.InAttackProcess.Value == false))
+                .Add(new FuncCondition(() => entity.IsMoving.Value == false));
 
             entity
                 .AddCanMove(canMove)
                 .AddCanRotate(canRotate)
                 .AddCanApplyDamage(canApplyDamage)
                 .AddMustDie(mustDie)
+                .AddCanStartAttack(canStartAttack)
                 .AddMustSelfRelease(mustSelfRelease);
 
             entity
@@ -76,9 +89,16 @@ namespace _Project.Develop.Runtime.Entities
                 .AddSystem(new RotateDirectionByMoveInputSystem(_playerInput))
                 .AddSystem(new RigidbodyMovementSystem())
                 .AddSystem(new RigidbodyRotationSystem())
+                
+                .AddSystem(new StartAttackSystem())
+                .AddSystem(new ProcessAttackTimerSystem())
+                .AddSystem(new EndAttackSystem())
+                
                 .AddSystem(new ApplyDamageSystem())
+                
                 .AddSystem(new DeathSwitcherSystem())
                 .AddSystem(new DeathProcessTimerSystem())
+                
                 .AddSystem(new DisableCollidersOnDeathSystem())
                 .AddSystem(new SelfReleaseSystem(_entitiesLifeContext));
         
@@ -136,14 +156,18 @@ namespace _Project.Develop.Runtime.Entities
                 .AddMustSelfRelease(mustSelfRelease);
 
             entity
-                .AddSystem(new BodyContactsDetectingSystem())
-                .AddSystem(new BodyContactsEntitiesFilterSystem(_collidersRegistryService))
-                .AddSystem(new DealDamageOnContactSystem())
-                .AddSystem(new ApplyDamageSystem())
                 .AddSystem(new RigidbodyMovementSystem())
                 .AddSystem(new RigidbodyRotationSystem())
+                
+                .AddSystem(new BodyContactsDetectingSystem())
+                .AddSystem(new BodyContactsEntitiesFilterSystem(_collidersRegistryService))
+                
+                .AddSystem(new DealDamageOnContactSystem())
+                .AddSystem(new ApplyDamageSystem())
+                
                 .AddSystem(new DeathSwitcherSystem())
                 .AddSystem(new DeathProcessTimerSystem())
+                
                 .AddSystem(new DisableCollidersOnDeathSystem())
                 .AddSystem(new SelfReleaseSystem(_entitiesLifeContext));
         

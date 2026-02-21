@@ -719,5 +719,216 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Damage.BodyContactDamage() {Value = value}); 
 		}
 
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.StartAttackRequest StartAttackRequestC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.StartAttackRequest>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent StartAttackRequest => StartAttackRequestC.Value;
+
+		public bool TryGetStartAttackRequest(out _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.StartAttackRequest component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddStartAttackRequest()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.StartAttackRequest() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddStartAttackRequest(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.StartAttackRequest() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.StartAttackEvent StartAttackEventC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.StartAttackEvent>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent StartAttackEvent => StartAttackEventC.Value;
+
+		public bool TryGetStartAttackEvent(out _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.StartAttackEvent component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddStartAttackEvent()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.StartAttackEvent() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddStartAttackEvent(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.StartAttackEvent() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.CanStartAttack CanStartAttackC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.CanStartAttack>();
+
+		public _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition CanStartAttack => CanStartAttackC.Value;
+
+		public bool TryGetCanStartAttack(out _Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.CanStartAttack component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddCanStartAttack(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.CanStartAttack() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.EndAttackEvent EndAttackEventC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.EndAttackEvent>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent EndAttackEvent => EndAttackEventC.Value;
+
+		public bool TryGetEndAttackEvent(out _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.EndAttackEvent component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddEndAttackEvent()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.EndAttackEvent() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddEndAttackEvent(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.EndAttackEvent() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackProcessInitialTime AttackProcessInitialTimeC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackProcessInitialTime>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> AttackProcessInitialTime => AttackProcessInitialTimeC.Value;
+
+		public bool TryGetAttackProcessInitialTime(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackProcessInitialTime component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddAttackProcessInitialTime()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackProcessInitialTime() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddAttackProcessInitialTime(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackProcessInitialTime() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackProcessCurrentTime AttackProcessCurrentTimeC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackProcessCurrentTime>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> AttackProcessCurrentTime => AttackProcessCurrentTimeC.Value;
+
+		public bool TryGetAttackProcessCurrentTime(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackProcessCurrentTime component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddAttackProcessCurrentTime()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackProcessCurrentTime() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddAttackProcessCurrentTime(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackProcessCurrentTime() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackDelayTime AttackDelayTimeC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackDelayTime>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> AttackDelayTime => AttackDelayTimeC.Value;
+
+		public bool TryGetAttackDelayTime(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackDelayTime component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddAttackDelayTime()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackDelayTime() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddAttackDelayTime(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackDelayTime() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackDelayEndEvent AttackDelayEndEventC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackDelayEndEvent>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent AttackDelayEndEvent => AttackDelayEndEventC.Value;
+
+		public bool TryGetAttackDelayEndEvent(out _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackDelayEndEvent component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddAttackDelayEndEvent()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackDelayEndEvent() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddAttackDelayEndEvent(_Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.AttackDelayEndEvent() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess InAttackProcessC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> InAttackProcess => InAttackProcessC.Value;
+
+		public bool TryGetInAttackProcess(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddInAttackProcess()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddInAttackProcess(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackProcess() {Value = value}); 
+		}
+
 	}
 }
