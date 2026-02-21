@@ -37,6 +37,7 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagement
             public const string Projectile = "Entities/Projectile";
             public const string Hero = "Entities/Hero";
             public const string Ghost = "Entities/Ghost";
+            public const string Mage = "Entities/Mage";
         }
         
         private static readonly Dictionary<Type, string> _scriptableObject = new()

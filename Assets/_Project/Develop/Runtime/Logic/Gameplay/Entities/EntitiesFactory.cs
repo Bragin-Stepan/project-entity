@@ -30,7 +30,7 @@ namespace _Project.Develop.Runtime.Entities
             _playerInput = container.Resolve<IPlayerInput>();
         }
         
-        public Entity CreateHeroEntity(Vector3 position)
+        public Entity CreateHero(Vector3 position)
         {
             Entity entity = CreateEmpty();
         
@@ -127,8 +127,17 @@ namespace _Project.Develop.Runtime.Entities
         
             return entity;
         }
+
+        public Entity CreateMage(Vector3 position)
+        {
+            Entity entity = CreateEmpty();
         
-        public Entity CreateGhostEntity(Vector3 position)
+            _monoEntitiesFactory.Create(entity, position, PathToResources.Entity.Mage);
+            
+            return entity;
+        }
+
+        public Entity CreateGhost(Vector3 position)
         {
             Entity entity = CreateEmpty();
         

@@ -22,8 +22,8 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
 
         public void Run()
         {
-            _entitiesFactory.CreateGhostEntity(Vector3.zero + Vector3.forward * 5);
-            _entitiesFactory.CreateHeroEntity(Vector3.zero);
+            _entitiesFactory.CreateMage(Vector3.zero + Vector3.forward * 5);
+            _entitiesFactory.CreateHero(Vector3.zero);
 
             _isRunning = true;
         }
