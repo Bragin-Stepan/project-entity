@@ -4,6 +4,7 @@ using _Project.Develop.Runtime.Utilities.Conditions;
 using _Project.Develop.Runtime.Utils.ReactiveManagement;
 using _Project.Develop.Runtime.Utils.ReactiveManagement.Event;
 using Unity.Mathematics;
+using UnityEngine;
 
 namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.Systems
 {
@@ -39,10 +40,10 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.Systems
             
             if (_canRegen.Evaluate() == false)
                 return;
-    
+            
             int energyDifference = _maxEnergy.Value - _currentEnergy.Value;
     
-            if (energyDifference <= 0f)
+            if (energyDifference <= 0)
                 return;
             
             int valueAdded = math.min(value, energyDifference);

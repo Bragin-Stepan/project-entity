@@ -1,6 +1,7 @@
 ﻿using _Project.Develop.Runtime.Entities;
 using _Project.Develop.Runtime.Utils.ReactiveManagement;
 using _Project.Develop.Runtime.Utils.ReactiveManagement.Event;
+using UnityEngine;
 
 namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.Systems
 {
@@ -19,6 +20,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.Systems
         {
             _isAutoRegen = entity.IsAutoRegenEnergy;
             _regenAmount = entity.AutoRegenEnergyAmount;
+            _regenEnergyRequest = entity.RegenEnergyRequest;
 
             _initialTime = entity.EnergyAutoRegenInitialTime;
             _currentTime = entity.EnergyAutoRegenCurrentTime;

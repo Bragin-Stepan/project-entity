@@ -240,7 +240,7 @@ namespace _Project.Develop.Runtime.Entities
                 .AddRegenEnergyEvent()
                 .AddRegenEnergyRequest()
                 .AddAutoRegenEnergyAmount(new ReactiveVariable<int>(5))
-                .AddIsAutoRegenEnergy()
+                .AddIsAutoRegenEnergy(new ReactiveVariable<bool>(true))
                 .AddEnergyAutoRegenCurrentTime()
                 .AddEnergyAutoRegenInitialTime(new ReactiveVariable<float>(3))
                 
