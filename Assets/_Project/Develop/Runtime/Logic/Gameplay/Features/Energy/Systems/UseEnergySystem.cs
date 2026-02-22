@@ -21,20 +21,20 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.Systems
         {
             _currentEnergy = entity.CurrentEnergy;
 
-            _useEnergyRequest = entity.RegenEnergyRequest;
-            _useEnergyEvent = entity.RegenEnergyEvent;
+            _useEnergyRequest = entity.UseEnergyRequest;
+            _useEnergyEvent = entity.UseEnergyEvent;
             
-            _canUse = entity.CanRegenEnergy;
+            _canUse = entity.CanUseEnergy;
     
-            _useRequestDispose = _useEnergyRequest.Subscribe(OnRegenRequest);
+            _useRequestDispose = _useEnergyRequest.Subscribe(OnUseRequest);
         }
     
-        private void OnRegenRequest(int value)
+        private void OnUseRequest(int value)
         {
             if (value <= 0)
                 throw new ArgumentException($"Energy use value must be positive. Received: {value}", nameof(value));
             
-            if (_canUse.Evaluate() == false || _currentEnergy.Value < value)
+            if (_canUse.Evaluate() == false)
                 return;
             
             _currentEnergy.Value -= value;
