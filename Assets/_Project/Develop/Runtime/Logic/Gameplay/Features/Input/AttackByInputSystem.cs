@@ -20,7 +20,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Input
         {
             _startAttackRequest = entity.StartAttackRequest;
 
-            _playerInput.Interact.Enter += OnAttackRequest;
+            _playerInput.Attack.Enter += OnAttackRequest;
         }
 
         private void OnAttackRequest(float value)
@@ -30,7 +30,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Input
 
         public void OnDispose()
         {
-            _playerInput.Interact.Enter -= OnAttackRequest;
+            _playerInput.Attack.Enter -= OnAttackRequest;
         }
     }
 }
