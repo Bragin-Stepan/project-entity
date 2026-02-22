@@ -7,6 +7,7 @@ namespace _Project.Develop.Runtime.Utils.InputManagement.Inputs
     {
         public InputState<Vector2> Move { get; }
         public InputState<Vector2> Look { get; }
+        public InputState<float> Attack { get; }
         public InputState<float> Jump { get; }
         public InputState<float> Sprint { get; }
         public InputState<float> Interact { get; }
@@ -23,6 +24,7 @@ namespace _Project.Develop.Runtime.Utils.InputManagement.Inputs
             Move = Register<Vector2>(_playerActions.Move);
             Look = Register<Vector2>(_playerActions.Look);
             Jump = Register<float>(_playerActions.Jump);
+            Attack = Register<float>(_playerActions.Attack);
             Sprint = Register<float>(_playerActions.Sprint);
             Interact = Register<float>(_playerActions.Interact);
             Crouch = Register<float>(_playerActions.Crouch);

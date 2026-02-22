@@ -7,6 +7,7 @@ namespace _Project.Develop.Runtime.Utils.InputManagement
     {
         InputState<Vector2> Move { get; }
         InputState<Vector2> Look { get; }
+        InputState<float> Attack { get; }
         InputState<float> Jump { get; }
         InputState<float> Sprint { get; }
         InputState<float> Interact { get; }
