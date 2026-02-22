@@ -16,6 +16,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.Systems
 
         public void OnInit(Entity entity)
         {
+            _startTeleportEvent = entity.StartTeleportEvent;
             _findPointRequest = entity.FindTeleportPointRequest;
             
             _startTeleportEventDisposable = _startTeleportEvent.Subscribe(OnStartTeleportProcess);

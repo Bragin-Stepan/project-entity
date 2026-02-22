@@ -1059,13 +1059,13 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.AutoRegenEnergyAmount() {Value = value}); 
 		}
 
-		public _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.InAutoRegenEnergy InAutoRegenEnergyC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Energy.InAutoRegenEnergy>();
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.IsAutoRegenEnergy IsAutoRegenEnergyC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Energy.IsAutoRegenEnergy>();
 
-		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> InAutoRegenEnergy => InAutoRegenEnergyC.Value;
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> IsAutoRegenEnergy => IsAutoRegenEnergyC.Value;
 
-		public bool TryGetInAutoRegenEnergy(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		public bool TryGetIsAutoRegenEnergy(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
 		{
-			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.InAutoRegenEnergy component);
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.IsAutoRegenEnergy component);
 			if(result)
 				value = component.Value;
 			else
@@ -1073,14 +1073,14 @@ namespace _Project.Develop.Runtime.Entities
 			return result;
 		}
 
-		public _Project.Develop.Runtime.Entities.Entity AddInAutoRegenEnergy()
+		public _Project.Develop.Runtime.Entities.Entity AddIsAutoRegenEnergy()
 		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.InAutoRegenEnergy() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>() }); 
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.IsAutoRegenEnergy() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>() }); 
 		}
 
-		public _Project.Develop.Runtime.Entities.Entity AddInAutoRegenEnergy(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		public _Project.Develop.Runtime.Entities.Entity AddIsAutoRegenEnergy(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
 		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.InAutoRegenEnergy() {Value = value}); 
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.IsAutoRegenEnergy() {Value = value}); 
 		}
 
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.EnergyAutoRegenInitialTime EnergyAutoRegenInitialTimeC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Energy.EnergyAutoRegenInitialTime>();

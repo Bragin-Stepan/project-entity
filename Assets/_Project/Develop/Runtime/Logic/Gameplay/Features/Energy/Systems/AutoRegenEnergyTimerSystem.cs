@@ -13,11 +13,11 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.Systems
         
         private ReactiveVariable<int> _regenAmount;
         
-        private ReactiveVariable<bool> _inAutoRegen;
+        private ReactiveVariable<bool> _isAutoRegen;
         
         public void OnInit(Entity entity)
         {
-            _inAutoRegen = entity.InAutoRegenEnergy;
+            _isAutoRegen = entity.IsAutoRegenEnergy;
             _regenAmount = entity.AutoRegenEnergyAmount;
 
             _initialTime = entity.EnergyAutoRegenInitialTime;
@@ -26,7 +26,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.Systems
         
         public void OnUpdate(float deltaTime)
         {
-            if (_inAutoRegen.Value == false)
+            if (_isAutoRegen.Value == false)
                 return;
 
             _currentTime.Value += deltaTime;

@@ -3,6 +3,7 @@ using _Project.Develop.Runtime.Entities;
 using _Project.Develop.Runtime.Utilities.Conditions;
 using _Project.Develop.Runtime.Utils.ReactiveManagement;
 using _Project.Develop.Runtime.Utils.ReactiveManagement.Event;
+using UnityEngine;
 
 namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.Systems
 {
@@ -29,7 +30,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.Systems
             _inTeleportProcess = entity.InTeleportProcess;
             
             _canStartTeleport = entity.CanStartTeleport;
-
+            
             _teleportRequestDispose = _startTeleportRequest.Subscribe(OnTeleportRequest);
         }
 
@@ -37,6 +38,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.Systems
         {
             if (_canStartTeleport.Evaluate())
             {
+                Debug.Log("OnTeleportRequest");
                 _inTeleportProcess.Value = true;
                 _useEnergyRequest.Invoke(_teleportCost.Value);
                 _startTeleportEvent.Invoke();

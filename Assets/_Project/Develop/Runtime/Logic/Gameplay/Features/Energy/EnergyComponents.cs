@@ -17,7 +17,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Energy
     public class RegenEnergyEvent : IEntityComponent { public ReactiveEvent<int> Value; }
     
     public class AutoRegenEnergyAmount : IEntityComponent { public ReactiveVariable<int> Value; }
-    public class InAutoRegenEnergy : IEntityComponent { public ReactiveVariable<bool> Value; }
+    public class IsAutoRegenEnergy : IEntityComponent { public ReactiveVariable<bool> Value; }
     public class EnergyAutoRegenInitialTime : IEntityComponent { public ReactiveVariable<float> Value; }
     public class EnergyAutoRegenCurrentTime : IEntityComponent { public ReactiveVariable<float> Value; }
 }
