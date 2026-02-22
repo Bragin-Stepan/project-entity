@@ -9,6 +9,9 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport
     public class TeleportTarget : IEntityComponent { public Transform Value; }
     public class TeleportToPoint : IEntityComponent { public Transform Value; }
     
+    public class FindTeleportPointRequest : IEntityComponent { public ReactiveEvent Value; }
+    public class FindTeleportPointEvent : IEntityComponent { public ReactiveEvent Value; }
+    
     public class CanStartTeleport : IEntityComponent { public ICompositeCondition Value; }
     public class InTeleportProcess : IEntityComponent { public ReactiveVariable<bool> Value; }
     

@@ -6,7 +6,7 @@ using _Project.Develop.Runtime.Utils.ReactiveManagement.Event;
 
 namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.Systems
 {
-    public class StartTeleportByEnergySystem: IInitializableSystem, IDisposableSystem
+    public class TeleportStartByEnergySystem: IInitializableSystem, IDisposableSystem
     {
         private ReactiveEvent<int> _useEnergyRequest;
         private ReactiveEvent _startTeleportRequest;
