@@ -239,7 +239,7 @@ namespace _Project.Develop.Runtime.Entities
                 .AddUseEnergyRequest()
                 .AddRegenEnergyEvent()
                 .AddRegenEnergyRequest()
-                .AddAutoRegenEnergyAmount(new ReactiveVariable<int>(5))
+                .AddAutoRegenEnergyAmount(new ReactiveVariable<int>(10))
                 .AddIsAutoRegenEnergy(new ReactiveVariable<bool>(true))
                 .AddEnergyAutoRegenCurrentTime()
                 .AddEnergyAutoRegenInitialTime(new ReactiveVariable<float>(3))
@@ -283,7 +283,8 @@ namespace _Project.Develop.Runtime.Entities
             entity
                 .AddSystem(new TeleportByInputSystem(_playerInput))
                 
-                .AddSystem(new RegenEnergySystem())
+                // .AddSystem(new RegenEnergyByValueSystem())
+                .AddSystem(new RegenEnergyByPercentageSystem())
                 .AddSystem(new UseEnergySystem())
                 .AddSystem(new AutoRegenEnergyTimerSystem())
                 

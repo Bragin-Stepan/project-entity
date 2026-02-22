@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.Systems
 {
-    public class RegenEnergySystem : IInitializableSystem, IDisposableSystem
+    public class RegenEnergyByValueSystem : IInitializableSystem, IDisposableSystem
     {
         private ReactiveEvent<int> _regenEnergyRequest;
         private ReactiveEvent<int> _regenEnergyEvent;
@@ -36,7 +36,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.Systems
         private void OnRegenRequest(int value)
         {
             if (value <= 0)
-                throw new ArgumentException($"Energy regen value must be positive. Received: {value}", nameof(value));
+                throw new ArgumentException("Energy regen value must be positive", nameof(value));
             
             if (_canRegen.Evaluate() == false)
                 return;
@@ -50,7 +50,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.Systems
             
             _currentEnergy.Value += valueAdded;
             
-            _regenEnergyEvent.Invoke(value);
+            _regenEnergyEvent.Invoke(valueAdded);
         }
     
         public void OnDispose()
