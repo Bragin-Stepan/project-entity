@@ -45,8 +45,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.Systems
             if (energyDifference <= 0)
                 return;
             
-            float regenAmountFloat = _maxEnergy.Value * (percentage / 100f);
-            int regenAmount = (int)math.floor(regenAmountFloat);
+            int regenAmount= (int)math.floor(_maxEnergy.Value * (percentage / 100f));
             
             if (regenAmount < 1 && _maxEnergy.Value > 0)
                 regenAmount = 1;

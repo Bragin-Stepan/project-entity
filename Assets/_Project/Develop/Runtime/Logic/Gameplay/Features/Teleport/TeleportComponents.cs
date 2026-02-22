@@ -8,6 +8,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport
 {
     public class TeleportTarget : IEntityComponent { public Transform Value; }
     public class TeleportToPoint : IEntityComponent { public Transform Value; }
+    public class TeleportSearchRadius : IEntityComponent { public ReactiveVariable<float> Value; }
     
     public class FindTeleportPointRequest : IEntityComponent { public ReactiveEvent Value; }
     public class FindTeleportPointEvent : IEntityComponent { public ReactiveEvent Value; }
@@ -20,5 +21,5 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport
     
     public class EndTeleportEvent : IEntityComponent { public ReactiveEvent Value; }
     
-    public class EnergyTeleportCost : IEntityComponent { public ReactiveVariable<int> Value; }
+    public class TeleportEnergyCost : IEntityComponent { public ReactiveVariable<int> Value; }
 }

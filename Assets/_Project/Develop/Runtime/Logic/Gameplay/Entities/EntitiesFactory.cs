@@ -231,7 +231,8 @@ namespace _Project.Develop.Runtime.Entities
                 .AddFindTeleportPointRequest()
                 .AddEndTeleportEvent()
                 
-                .AddEnergyTeleportCost(new ReactiveVariable<int>(20))
+                .AddTeleportEnergyCost(new ReactiveVariable<int>(20))
+                .AddTeleportSearchRadius(new ReactiveVariable<float>(6))
                 
                 .AddCurrentEnergy(new ReactiveVariable<int>(60))
                 .AddMaxEnergy(new ReactiveVariable<int>(60))
@@ -260,7 +261,7 @@ namespace _Project.Develop.Runtime.Entities
             
             ICompositeCondition canStartTeleport = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false))
-                .Add(new FuncCondition(() => entity.CurrentEnergy.Value >= entity.EnergyTeleportCost.Value));
+                .Add(new FuncCondition(() => entity.CurrentEnergy.Value >= entity.TeleportEnergyCost.Value));
             
             ICompositeCondition mustDie = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.CurrentHealth.Value <= 0));

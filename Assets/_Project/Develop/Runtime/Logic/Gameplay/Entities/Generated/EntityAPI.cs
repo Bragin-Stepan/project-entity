@@ -116,6 +116,30 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportToPoint() {Value = value}); 
 		}
 
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportSearchRadius TeleportSearchRadiusC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportSearchRadius>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> TeleportSearchRadius => TeleportSearchRadiusC.Value;
+
+		public bool TryGetTeleportSearchRadius(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportSearchRadius component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTeleportSearchRadius()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportSearchRadius() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTeleportSearchRadius(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportSearchRadius() {Value = value}); 
+		}
+
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.FindTeleportPointRequest FindTeleportPointRequestC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.FindTeleportPointRequest>();
 
 		public _Project.Develop.Runtime.Utils.ReactiveManagement.Event.ReactiveEvent FindTeleportPointRequest => FindTeleportPointRequestC.Value;
@@ -279,13 +303,13 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.EndTeleportEvent() {Value = value}); 
 		}
 
-		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.EnergyTeleportCost EnergyTeleportCostC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.EnergyTeleportCost>();
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportEnergyCost TeleportEnergyCostC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportEnergyCost>();
 
-		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Int32> EnergyTeleportCost => EnergyTeleportCostC.Value;
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Int32> TeleportEnergyCost => TeleportEnergyCostC.Value;
 
-		public bool TryGetEnergyTeleportCost(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Int32> value)
+		public bool TryGetTeleportEnergyCost(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Int32> value)
 		{
-			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.EnergyTeleportCost component);
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportEnergyCost component);
 			if(result)
 				value = component.Value;
 			else
@@ -293,14 +317,14 @@ namespace _Project.Develop.Runtime.Entities
 			return result;
 		}
 
-		public _Project.Develop.Runtime.Entities.Entity AddEnergyTeleportCost()
+		public _Project.Develop.Runtime.Entities.Entity AddTeleportEnergyCost()
 		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.EnergyTeleportCost() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Int32>() }); 
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportEnergyCost() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Int32>() }); 
 		}
 
-		public _Project.Develop.Runtime.Entities.Entity AddEnergyTeleportCost(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Int32> value)
+		public _Project.Develop.Runtime.Entities.Entity AddTeleportEnergyCost(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Int32> value)
 		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.EnergyTeleportCost() {Value = value}); 
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportEnergyCost() {Value = value}); 
 		}
 
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.CapsuleColliderComponent CapsuleColliderC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.CapsuleColliderComponent>();

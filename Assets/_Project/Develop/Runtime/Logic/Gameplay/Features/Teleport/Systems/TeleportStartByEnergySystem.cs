@@ -21,7 +21,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.Systems
 
         public void OnInit(Entity entity)
         {
-            _teleportCost = entity.EnergyTeleportCost;
+            _teleportCost = entity.TeleportEnergyCost;
 
             _useEnergyRequest = entity.UseEnergyRequest;
             _startTeleportRequest = entity.StartTeleportRequest;
