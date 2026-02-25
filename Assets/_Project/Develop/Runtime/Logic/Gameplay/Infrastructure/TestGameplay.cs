@@ -24,8 +24,11 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
 
         public void Run()
         {
-            _entity = _entitiesFactory.CreateTeleportWizard(Vector3.zero + Vector3.forward * 5);
-            // _entitiesFactory.CreateHero(Vector3.zero);
+            _entity = _entitiesFactory.CreateTeleportWizard(Vector3.zero);
+
+            _entitiesFactory.CreateGhost(Vector3.zero + Vector3.forward * 5);
+            _entitiesFactory.CreateGhost(Vector3.zero + Vector3.right * 5);
+            _entitiesFactory.CreateGhost(Vector3.zero + Vector3.left * 5);
 
             _isRunning = true;
         }
@@ -41,12 +44,8 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
             if (_entity == null)
                 return;
             
-            GUI.Label(new Rect(10, 20, 200, 50), $"Energy: {_entity.CurrentEnergy.Value}/{_entity.MaxEnergy.Value}");
-            // GUI.Label(new Rect(10, 40, 200, 50), $"CurrentEnergy: {_entity.CurrentEnergy.Value}");
-            // GUI.Label(new Rect(10, 60, 200, 50), $"CurrentEnergy: {_entity.CurrentEnergy.Value}");
-            // GUI.Label(new Rect(10, 80, 200, 50), $"CurrentEnergy: {_entity.CurrentEnergy.Value}");
-            // GUI.Label(new Rect(10, 100, 200, 50), $"CurrentEnergy: {_entity.CurrentEnergy.Value}");
-            // GUI.Label(new Rect(10, 120, 200, 50), $"CurrentEnergy: {_entity.CurrentEnergy.Value}");
+            GUI.Label(new Rect(10, 20, 200, 50), $"Health: {_entity.CurrentHealth.Value}/{_entity.MaxHealth.Value}");
+            GUI.Label(new Rect(10, 40, 200, 50), $"Energy: {_entity.CurrentEnergy.Value}/{_entity.MaxEnergy.Value}");
         }
     }
 }

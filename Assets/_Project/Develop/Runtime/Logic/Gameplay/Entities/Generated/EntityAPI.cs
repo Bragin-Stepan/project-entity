@@ -327,6 +327,73 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportEnergyCost() {Value = value}); 
 		}
 
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamage TeleportDamageC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamage>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> TeleportDamage => TeleportDamageC.Value;
+
+		public bool TryGetTeleportDamage(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamage component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTeleportDamage()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamage() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTeleportDamage(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamage() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamageRadius TeleportDamageRadiusC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamageRadius>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> TeleportDamageRadius => TeleportDamageRadiusC.Value;
+
+		public bool TryGetTeleportDamageRadius(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamageRadius component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTeleportDamageRadius()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamageRadius() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTeleportDamageRadius(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamageRadius() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamageMask TeleportDamageMaskC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamageMask>();
+
+		public UnityEngine.LayerMask TeleportDamageMask => TeleportDamageMaskC.Value;
+
+		public bool TryGetTeleportDamageMask(out UnityEngine.LayerMask value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamageMask component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(UnityEngine.LayerMask);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTeleportDamageMask(UnityEngine.LayerMask value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamageMask() {Value = value}); 
+		}
+
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.CapsuleColliderComponent CapsuleColliderC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.CapsuleColliderComponent>();
 
 		public UnityEngine.CapsuleCollider CapsuleCollider => CapsuleColliderC.Value;

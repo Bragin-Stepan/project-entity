@@ -130,15 +130,6 @@ namespace _Project.Develop.Runtime.Entities
             return entity;
         }
 
-        public Entity CreateMage(Vector3 position)
-        {
-            Entity entity = CreateEmpty();
-        
-            _monoEntitiesFactory.Create(entity, position, PathToResources.Entity.Mage);
-            
-            return entity;
-        }
-
         public Entity CreateGhost(Vector3 position)
         {
             Entity entity = CreateEmpty();
@@ -153,8 +144,8 @@ namespace _Project.Develop.Runtime.Entities
                 .AddRotateDirection()
                 .AddMoveSpeed(new ReactiveVariable<float>(10))
                 .AddRotationSpeed(new ReactiveVariable<float>(800))
-                .AddMaxHealth(new ReactiveVariable<float>(150))
-                .AddCurrentHealth(new ReactiveVariable<float>(150))
+                .AddMaxHealth(new ReactiveVariable<float>(50))
+                .AddCurrentHealth(new ReactiveVariable<float>(50))
                 .AddBodyContactDamage(new ReactiveVariable<float>(50))
                 .AddTakeDamageRequest()
                 .AddTakeDamageEvent()
@@ -231,6 +222,10 @@ namespace _Project.Develop.Runtime.Entities
                 .AddFindTeleportPointRequest()
                 .AddEndTeleportEvent()
                 
+                .AddTeleportDamage(new ReactiveVariable<float>(50))
+                .AddTeleportDamageRadius(new ReactiveVariable<float>(6))
+                .AddTeleportDamageMask(Layers.CharactersMask)
+                
                 .AddTeleportEnergyCost(new ReactiveVariable<int>(20))
                 .AddTeleportSearchRadius(new ReactiveVariable<float>(6))
                 
@@ -294,6 +289,7 @@ namespace _Project.Develop.Runtime.Entities
                 .AddSystem(new FindRandomPointForTeleportSystem())
                 .AddSystem(new EndTeleportSystem())
                 .AddSystem(new InstantTeleportSystem())
+                .AddSystem(new DealDamageAfterTeleportSystem(_collidersRegistryService))
                 
                 .AddSystem(new BodyContactsDetectingSystem())
                 .AddSystem(new BodyContactsEntitiesFilterSystem(_collidersRegistryService))

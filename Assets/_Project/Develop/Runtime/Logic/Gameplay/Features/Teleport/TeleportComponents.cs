@@ -22,4 +22,8 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport
     public class EndTeleportEvent : IEntityComponent { public ReactiveEvent Value; }
     
     public class TeleportEnergyCost : IEntityComponent { public ReactiveVariable<int> Value; }
+    
+    public class TeleportDamage : IEntityComponent { public ReactiveVariable<float> Value; }
+    public class TeleportDamageRadius : IEntityComponent { public ReactiveVariable<float> Value; }
+    public class TeleportDamageMask : IEntityComponent { public LayerMask Value; }
 }
