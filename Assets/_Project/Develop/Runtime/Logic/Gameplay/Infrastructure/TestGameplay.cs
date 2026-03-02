@@ -1,5 +1,6 @@
 ﻿using System;
 using _Project.Develop.Runtime.Entities;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.AI;
 using _Project.Develop.Runtime.Utils.InputManagement;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using UnityEngine;
@@ -10,8 +11,11 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
     {
         private DIContainer _container;
         private EntitiesFactory _entitiesFactory;
+        private BrainsFactory _brainsFactory;
 
-        private Entity _entity;
+        private Entity _hero;
+        private Entity _ghost;
+        
         private bool _isRunning;
 
         public void Initialize(DIContainer container)
@@ -20,15 +24,15 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
             
             _container.Resolve<IPlayerInput>().Enable();
             _entitiesFactory = _container.Resolve<EntitiesFactory>();
+            _brainsFactory = _container.Resolve<BrainsFactory>();
         }
 
         public void Run()
         {
-            _entity = _entitiesFactory.CreateTeleportWizard(Vector3.zero);
-
-            _entitiesFactory.CreateGhost(Vector3.zero + Vector3.forward * 5);
-            _entitiesFactory.CreateGhost(Vector3.zero + Vector3.right * 5);
-            _entitiesFactory.CreateGhost(Vector3.zero + Vector3.left * 5);
+            _hero = _entitiesFactory.CreateTeleportWizard(Vector3.zero);
+            _ghost = _entitiesFactory.CreateGhost(Vector3.zero + Vector3.forward * 5);
+            
+            _brainsFactory.CreateGhostBrain(_ghost);
 
             _isRunning = true;
         }
@@ -41,11 +45,11 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
 
         private void OnGUI()
         {
-            if (_entity == null)
+            if (_hero == null)
                 return;
             
-            GUI.Label(new Rect(10, 20, 200, 50), $"Health: {_entity.CurrentHealth.Value}/{_entity.MaxHealth.Value}");
-            GUI.Label(new Rect(10, 40, 200, 50), $"Energy: {_entity.CurrentEnergy.Value}/{_entity.MaxEnergy.Value}");
+            GUI.Label(new Rect(10, 20, 200, 50), $"Health: {_hero.CurrentHealth.Value}/{_hero.MaxHealth.Value}");
+            GUI.Label(new Rect(10, 40, 200, 50), $"Energy: {_hero.CurrentEnergy.Value}/{_hero.MaxEnergy.Value}");
         }
     }
 }

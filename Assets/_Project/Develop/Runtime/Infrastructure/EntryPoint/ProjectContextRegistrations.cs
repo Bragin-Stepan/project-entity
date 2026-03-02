@@ -15,6 +15,7 @@ using Assets._Project.Develop.Runtime.Utilities.DataManagement;
 using Assets._Project.Develop.Runtime.Utilities.DataManagement.DataProviders;
 using Assets._Project.Develop.Runtime.Utilities.LoadingScreen;
 using Assets._Project.Develop.Runtime.Utilities.SceneManagement;
+using Assets._Project.Develop.Runtime.Utilities.Timer;
 using Object = UnityEngine.Object;
 
 namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
@@ -24,6 +25,7 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
         public static void Process(DIContainer container)
         {
             container.RegisterAsSingle<ICoroutinesPerformer>(CreateCoroutinesPerformer);
+            container.RegisterAsSingle(CreateTimerServiceFactory);
             container.RegisterAsSingle(CreateConfigsProviderService);
             container.RegisterAsSingle(CreateResourcesAssetsLoader);
             container.RegisterAsSingle(CreateSceneLoaderService);
@@ -43,7 +45,7 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
             container.RegisterAsSingle(CreateViewsFactory);
             container.RegisterAsSingle<ILoadingScreen>(CreateLoadingScreen);
         }
-        
+
         private static ConfigsProviderService CreateConfigsProviderService(DIContainer c)
         {
             ResourcesAssetsLoader resourcesAssetsLoader = c.Resolve<ResourcesAssetsLoader>();
@@ -63,6 +65,8 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
         private static ResourcesAssetsLoader CreateResourcesAssetsLoader(DIContainer c) => new();
         
         private static InputFactory CreateInputFactory(DIContainer c) => new();
+        
+        private static TimerServiceFactory CreateTimerServiceFactory(DIContainer c) => new (c);
         
         private static PlayerInput CreatePlayerInput(DIContainer c) => c.Resolve<InputFactory>().CreatePlayerInput();
         

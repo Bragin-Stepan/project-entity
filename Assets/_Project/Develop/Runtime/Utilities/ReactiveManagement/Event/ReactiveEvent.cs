@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace _Project.Develop.Runtime.Utils.ReactiveManagement.Event
 {
-     public class ReactiveEvent<T> : IReadOnlyEvent<T>
+    public class ReactiveEvent<T> : IReadOnlyEvent<T>
     {
         private readonly List<Subscriber<T>> _subscribers = new();
         private readonly List<Subscriber<T>> _toAdd = new();
@@ -41,9 +41,9 @@ namespace _Project.Develop.Runtime.Utils.ReactiveManagement.Event
 
     public class ReactiveEvent : IReadOnlyEvent
     {
-        private readonly List<Subscriber> _subscribers = new();
-        private readonly List<Subscriber> _toAdd = new();
-        private readonly List<Subscriber> _toRemove = new();
+        private readonly List<Subscriber> _subscribers = new List<Subscriber>();
+        private readonly List<Subscriber> _toAdd = new List<Subscriber>();
+        private readonly List<Subscriber> _toRemove = new List<Subscriber>();
 
         public IDisposable Subscribe(Action action)
         {

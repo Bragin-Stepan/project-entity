@@ -1,4 +1,5 @@
 ﻿using _Project.Develop.Runtime.Entities;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.AI;
 using _Project.Develop.Runtime.UI;
 using _Project.Develop.Runtime.UI.Core;
 using _Project.Develop.Runtime.UI.Screens.Gameplay;
@@ -21,9 +22,13 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
             container.RegisterAsSingle(CreateEntitiesFactory);
             container.RegisterAsSingle(CreateEntitiesLifeContext);
             container.RegisterAsSingle(CreateCollidersRegistryService);
+            container.RegisterAsSingle(CreateAIBrainContext);
+            container.RegisterAsSingle(CreateBrainsFactory);
             container.RegisterAsSingle(CreateMonoEntitiesFactory).NonLazy();
         }
         
+        private static AIBrainsContext CreateAIBrainContext(DIContainer c) => new();
+        private static BrainsFactory CreateBrainsFactory(DIContainer c) => new(c);
         private static EntitiesLifeContext CreateEntitiesLifeContext(DIContainer c) => new();
 
         private static EntitiesFactory CreateEntitiesFactory(DIContainer c) => new(c);

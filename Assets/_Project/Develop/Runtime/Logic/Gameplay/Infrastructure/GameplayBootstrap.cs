@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using _Project.Develop.Runtime.Entities;
 using _Project.Develop.Runtime.Logic.Gameplay.Features;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.AI;
 using _Project.Develop.Runtime.Utils.InputManagement;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
         
         private DIContainer _container;
         private EntitiesLifeContext _entitiesLifeContext;
-        private GameplayInputArgs _gameplayArgs;
+        private AIBrainsContext _aiBrainsContext;
         
         private IPlayerInput _playerInput;
 
@@ -28,12 +29,12 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
                 throw new ArgumentException($"{nameof(sceneArgs)} is not match with {typeof(GameplayInputArgs)} type");
             
             GameplayContextRegistrations.Process(_container);
-            _gameplayArgs = gameplayInputArgs;
         }
 
         public override IEnumerator Initialize()
         {
             _entitiesLifeContext = _container.Resolve<EntitiesLifeContext>();
+            _aiBrainsContext = _container.Resolve<AIBrainsContext>();
             
             _testGameplay.Initialize(_container);
             yield break;
@@ -46,6 +47,7 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
 
         private void Update()
         {
+            _aiBrainsContext?.Update(Time.deltaTime);
             _entitiesLifeContext?.Update(Time.deltaTime);
         }
     }
