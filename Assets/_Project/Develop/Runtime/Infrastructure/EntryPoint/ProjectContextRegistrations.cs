@@ -32,6 +32,7 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
             container.RegisterAsSingle(CreateSceneSwitcherService);
             
             container.RegisterAsSingle(CreateInputFactory);
+            container.RegisterAsSingle(CreateInputStateMachine);
             container.RegisterAsSingle<IPlayerInput>(CreatePlayerInput);
             container.RegisterAsSingle<IUIInput>(CreateUIInput);
             
@@ -65,6 +66,7 @@ namespace Assets._Project.Develop.Runtime.Infrastructure.EntryPoint
         private static ResourcesAssetsLoader CreateResourcesAssetsLoader(DIContainer c) => new();
         
         private static InputFactory CreateInputFactory(DIContainer c) => new();
+        private static InputStateMachine CreateInputStateMachine(DIContainer c) => new(c);
         
         private static TimerServiceFactory CreateTimerServiceFactory(DIContainer c) => new (c);
         

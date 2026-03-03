@@ -4,13 +4,13 @@ using Assets._Project.Develop.Runtime.Utilities.StateMachineCore;
 
 namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI.States
 {
-    public class AttackTriggerState : State, IUpdatableState
+    public class TeleportTriggerState : State, IUpdatableState
     {
         private ReactiveEvent _request;
 
-        public AttackTriggerState(Entity entity)
+        public TeleportTriggerState(Entity entity)
         {
-            _request = entity.StartAttackRequest;
+            _request = entity.StartTeleportRequest;
         }
 
         public override void Enter()

@@ -13,8 +13,6 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI
 {
     public class BrainsFactory
     {
-        private readonly DIContainer _container;
-
         private readonly EntitiesLifeContext _entitiesLifeContext;
         private readonly AIBrainsContext _aiBrainsContext;
         private readonly TimerServiceFactory _timerServiceFactory;
@@ -22,12 +20,10 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI
         
         public BrainsFactory(DIContainer container)
         {
-            _container = container;
-            
-            _playerInput = _container.Resolve<IPlayerInput>();
-            _aiBrainsContext = _container.Resolve<AIBrainsContext>();
-            _timerServiceFactory = _container.Resolve<TimerServiceFactory>();
-            _entitiesLifeContext = _container.Resolve<EntitiesLifeContext>();
+            _playerInput = container.Resolve<IPlayerInput>();
+            _aiBrainsContext = container.Resolve<AIBrainsContext>();
+            _timerServiceFactory = container.Resolve<TimerServiceFactory>();
+            _entitiesLifeContext = container.Resolve<EntitiesLifeContext>();
         }
 
         public StateMachineBrain CreateGhostBrain(Entity entity)
@@ -39,7 +35,22 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI
 
             return brain;
         }
+
+        public StateMachineBrain CreateWizardBrain(Entity entity)
+        { 
+            AIStateMachine stateMachine = CreateRandomTeleportStateMachine(entity);
+            StateMachineBrain brain = new (stateMachine);
+            
+            _aiBrainsContext.SetFor(entity, brain);
+            
+            return brain;
+        }
         
+        public StateMachineBrain CreateDangerWizardBrain(Entity entity)
+        {
+            return null;
+        }
+
         public StateMachineBrain CreateMainHeroBrain(Entity entity, ITargetSelector targetSelector)
         {
             AIStateMachine combatState = CreateAutoAttackStateMachine(entity);
@@ -145,6 +156,35 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI
             stateMachine.AddTransition(attackTriggerState, rotateToTargetState, fromAttackToRotateStateCondition);
 
             return stateMachine;
+        }
+
+        private AIStateMachine CreateRandomTeleportStateMachine(Entity entity)
+        {
+            TeleportTriggerState teleportTriggerState = new (entity);
+            EmptyState emptyState = new ();
+            
+            ICompositeCondition fromIdleToTeleportCondition = new CompositeCondition()
+                .Add(entity.CanStartTeleport);
+            
+            ICompositeCondition fromTeleportToIdleCondition = new CompositeCondition()
+                .Add(new FuncCondition(() => entity.InTeleportProcess.Value == false));
+            
+            AIStateMachine stateMachine = new ();
+            
+            stateMachine.AddState(teleportTriggerState);
+            stateMachine.AddState(emptyState);
+            
+            stateMachine.AddTransition(emptyState, teleportTriggerState, fromIdleToTeleportCondition);
+            stateMachine.AddTransition(teleportTriggerState, emptyState, fromTeleportToIdleCondition);
+            
+            return stateMachine;
+        }
+        
+        private AIStateMachine CreateToTargetTeleportStateMachine(Entity entity)
+        {
+            TeleportTriggerState teleportTriggerState = new (entity);
+            
+            return null;
         }
     }
 }

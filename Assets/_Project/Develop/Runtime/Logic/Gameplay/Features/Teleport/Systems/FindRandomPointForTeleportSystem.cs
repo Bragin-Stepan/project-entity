@@ -9,7 +9,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.Systems
 {
     public class FindRandomPointForTeleportSystem : IInitializableSystem, IDisposableSystem
     {
-        private Transform _target;
+        private Transform _source;
         private Transform _toPoint;
 
         private ReactiveEvent _findPointRequest;
@@ -21,7 +21,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.Systems
 
         public void OnInit(Entity entity)
         {
-            _target = entity.TeleportTarget;
+            _source = entity.TeleportSource;
             _toPoint = entity.TeleportToPoint;
             _radius = entity.TeleportSearchRadius;
             _findPointRequest = entity.FindTeleportPointRequest;
@@ -37,7 +37,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.Systems
 
         private void OnFindPointRequest()
         {
-            _toPoint.position = GetRandomPointInRadius(_target.position, _radius.Value);
+            _toPoint.position = GetRandomPointInRadius(_source.position, _radius.Value);
             _findPointEvent.Invoke();
         }
 

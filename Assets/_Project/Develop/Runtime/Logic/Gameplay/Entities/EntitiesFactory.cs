@@ -210,7 +210,7 @@ namespace _Project.Develop.Runtime.Entities
                 .AddMaxHealth(new ReactiveVariable<float>(150))
                 .AddCurrentHealth(new ReactiveVariable<float>(150))
 
-                .AddTeleportTarget(entity.Transform)
+                .AddTeleportSource(entity.Transform)
                 .AddTeleportToPoint(entity.Transform)
                 .AddStartTeleportEvent()
                 .AddStartTeleportRequest()
@@ -225,6 +225,10 @@ namespace _Project.Develop.Runtime.Entities
 
                 .AddTeleportEnergyCost(new ReactiveVariable<int>(20))
                 .AddTeleportSearchRadius(new ReactiveVariable<float>(6))
+                
+                .AddTeleportCooldownInitialTime(new ReactiveVariable<float>(3))
+                .AddTeleportCooldownCurrentTime()
+                .AddInTeleportCooldown()
 
                 .AddCurrentEnergy(new ReactiveVariable<int>(60))
                 .AddMaxEnergy(new ReactiveVariable<int>(60))
@@ -253,6 +257,7 @@ namespace _Project.Develop.Runtime.Entities
 
             ICompositeCondition canStartTeleport = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false))
+                .Add(new FuncCondition(() => entity.InTeleportCooldown.Value == false))
                 .Add(new FuncCondition(() => entity.CurrentEnergy.Value >= entity.TeleportEnergyCost.Value));
 
             ICompositeCondition mustDie = new CompositeCondition()
@@ -286,6 +291,7 @@ namespace _Project.Develop.Runtime.Entities
                 .AddSystem(new FindRandomPointForTeleportSystem())
                 .AddSystem(new EndTeleportSystem())
                 .AddSystem(new InstantTeleportSystem())
+                .AddSystem(new TeleportCooldownTimerSystem())
                 .AddSystem(new DealDamageAfterTeleportSystem(_collidersRegistryService))
 
                 .AddSystem(new BodyContactsDetectingSystem())

@@ -78,13 +78,13 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new Assets._Project.Develop.Runtime.Gameplay.Common.NavMeshAgentComponent() {Value = value}); 
 		}
 
-		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportTarget TeleportTargetC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportTarget>();
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportSource TeleportSourceC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportSource>();
 
-		public UnityEngine.Transform TeleportTarget => TeleportTargetC.Value;
+		public UnityEngine.Transform TeleportSource => TeleportSourceC.Value;
 
-		public bool TryGetTeleportTarget(out UnityEngine.Transform value)
+		public bool TryGetTeleportSource(out UnityEngine.Transform value)
 		{
-			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportTarget component);
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportSource component);
 			if(result)
 				value = component.Value;
 			else
@@ -92,9 +92,9 @@ namespace _Project.Develop.Runtime.Entities
 			return result;
 		}
 
-		public _Project.Develop.Runtime.Entities.Entity AddTeleportTarget(UnityEngine.Transform value)
+		public _Project.Develop.Runtime.Entities.Entity AddTeleportSource(UnityEngine.Transform value)
 		{
-			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportTarget() {Value = value}); 
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportSource() {Value = value}); 
 		}
 
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportToPoint TeleportToPointC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportToPoint>();
@@ -325,6 +325,78 @@ namespace _Project.Develop.Runtime.Entities
 		public _Project.Develop.Runtime.Entities.Entity AddTeleportEnergyCost(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Int32> value)
 		{
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportEnergyCost() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportCooldownInitialTime TeleportCooldownInitialTimeC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportCooldownInitialTime>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> TeleportCooldownInitialTime => TeleportCooldownInitialTimeC.Value;
+
+		public bool TryGetTeleportCooldownInitialTime(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportCooldownInitialTime component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTeleportCooldownInitialTime()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportCooldownInitialTime() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTeleportCooldownInitialTime(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportCooldownInitialTime() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportCooldownCurrentTime TeleportCooldownCurrentTimeC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportCooldownCurrentTime>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> TeleportCooldownCurrentTime => TeleportCooldownCurrentTimeC.Value;
+
+		public bool TryGetTeleportCooldownCurrentTime(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportCooldownCurrentTime component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTeleportCooldownCurrentTime()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportCooldownCurrentTime() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTeleportCooldownCurrentTime(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Single> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportCooldownCurrentTime() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.InTeleportCooldown InTeleportCooldownC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.InTeleportCooldown>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> InTeleportCooldown => InTeleportCooldownC.Value;
+
+		public bool TryGetInTeleportCooldown(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.InTeleportCooldown component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddInTeleportCooldown()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.InTeleportCooldown() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddInTeleportCooldown(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<System.Boolean> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.InTeleportCooldown() {Value = value}); 
 		}
 
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamage TeleportDamageC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamage>();

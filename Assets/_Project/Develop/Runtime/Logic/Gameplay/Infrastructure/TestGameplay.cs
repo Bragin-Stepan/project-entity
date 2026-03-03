@@ -15,7 +15,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
         private BrainsFactory _brainsFactory;
 
         private Entity _hero;
-        private Entity _ghost;
+        private Entity _enemy;
         
         private bool _isRunning;
 
@@ -34,8 +34,8 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
             _hero.AddCurrentTarget();
             _brainsFactory.CreateMainHeroBrain(_hero, new NearestDamageableTargetSelector(_hero));
             
-            _ghost = _entitiesFactory.CreateGhost(Vector3.zero + Vector3.forward * 5);
-            _brainsFactory.CreateGhostBrain(_ghost);
+            _enemy = _entitiesFactory.CreateTeleportWizard(Vector3.zero + Vector3.forward * 5);
+            _brainsFactory.CreateWizardBrain(_enemy);
 
             _isRunning = true;
         }
@@ -48,11 +48,11 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
 
         private void OnGUI()
         {
-            if (_hero == null)
+            if (_hero == null || _enemy == null)
                 return;
             
             GUI.Label(new Rect(10, 20, 200, 50), $"Health: {_hero.CurrentHealth.Value}/{_hero.MaxHealth.Value}");
-            // GUI.Label(new Rect(10, 40, 200, 50), $"Energy: {_hero.CurrentEnergy.Value}/{_hero.MaxEnergy.Value}");
+            GUI.Label(new Rect(10, 40, 200, 50), $"Energy: {_enemy.CurrentEnergy.Value}/{_enemy.MaxEnergy.Value}");
         }
     }
 }

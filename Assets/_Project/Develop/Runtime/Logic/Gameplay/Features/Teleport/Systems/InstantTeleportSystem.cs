@@ -16,7 +16,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.Systems
         
         public void OnInit(Entity entity)
         {
-            _target = entity.TeleportTarget;
+            _target = entity.TeleportSource;
             _toPoint = entity.TeleportToPoint;
             _endTeleportEvent = entity.EndTeleportEvent;
             
