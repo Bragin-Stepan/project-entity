@@ -52,13 +52,13 @@ namespace _Project.Develop.Runtime.Entities
                 .AddInDeathProcess()
                 .AddDeathProcessInitialTime(new ReactiveVariable<float>(2))
                 .AddDeathProcessCurrentTime()
-                .AddAttackProcessInitialTime(new ReactiveVariable<float>(3))
+                .AddAttackProcessInitialTime(new ReactiveVariable<float>(1))
                 .AddAttackProcessCurrentTime()
                 .AddInAttackProcess()
                 .AddStartAttackRequest()
                 .AddStartAttackEvent()
                 .AddEndAttackEvent()
-                .AddAttackDelayTime(new ReactiveVariable<float>(2))
+                .AddAttackDelayTime(new ReactiveVariable<float>(1))
                 .AddAttackDelayEndEvent()
                 .AddInstantAttackDamage(new ReactiveVariable<float>(50))
                 .AddAttackCanceledEvent()
@@ -102,9 +102,6 @@ namespace _Project.Develop.Runtime.Entities
                 .AddMustCancelAttack(mustCancelAttack);
 
             entity
-                .AddSystem(new AttackByInputSystem(_playerInput))
-                .AddSystem(new MoveDirectionByInputSystem(_playerInput))
-                .AddSystem(new RotateDirectionByMoveInputSystem(_playerInput))
                 .AddSystem(new RigidbodyMovementSystem())
                 .AddSystem(new RigidbodyRotationSystem())
 

@@ -3,18 +3,25 @@ using System.Collections.Generic;
 
 namespace _Project.Develop.Runtime.Utils.ReactiveManagement
 {
-    public class ReactiveVariable<T> : IReadOnlyVariable<T> where T : IEquatable<T>
+    public class ReactiveVariable<T> : IReadOnlyVariable<T>
     {
-        private readonly List<Subscriber<T, T>> _subscribers = new List<Subscriber<T, T>>();
-        private readonly List<Subscriber<T, T>> _toAddList = new List<Subscriber<T, T>>();
-        private readonly List<Subscriber<T, T>> _toRemoveList = new List<Subscriber<T, T>>();
-
-        public ReactiveVariable() => _value = default(T);
-
-        public ReactiveVariable(T value) => _value = value;
+        private readonly List<Subscriber<T, T>> _subscribers = new ();
+        private readonly List<Subscriber<T, T>> _toAddList = new ();
+        private readonly List<Subscriber<T, T>> _toRemoveList = new ();
 
         private T _value;
+        private IEqualityComparer<T> _comparer;
 
+        public ReactiveVariable() : this(default) { }
+
+        public ReactiveVariable(T value) : this(value, EqualityComparer<T>.Default){ }
+
+        public ReactiveVariable(T value, IEqualityComparer<T> comparer)
+        {
+            _value = value;
+            _comparer = comparer;
+        }
+        
         public T Value
         {
             get => _value;
@@ -23,14 +30,14 @@ namespace _Project.Develop.Runtime.Utils.ReactiveManagement
                 T oldValue = _value;
                 _value = value;
 
-                if (_value.Equals(oldValue) == false)
+                if (_comparer.Equals(oldValue, value) == false)
                     Invoke(oldValue, _value);
             }
         }
 
         public IDisposable Subscribe(Action<T, T> action)
         {
-            Subscriber<T, T> subscriber = new Subscriber<T, T>(action, RemoveSubscriber);
+            Subscriber<T, T> subscriber = new (action, RemoveSubscriber);
             _toAddList.Add(subscriber);
 
             return subscriber;

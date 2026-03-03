@@ -1682,5 +1682,29 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.InAttackCooldown() {Value = value}); 
 		}
 
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.AI.CurrentTarget CurrentTargetC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.AI.CurrentTarget>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<_Project.Develop.Runtime.Entities.Entity> CurrentTarget => CurrentTargetC.Value;
+
+		public bool TryGetCurrentTarget(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<_Project.Develop.Runtime.Entities.Entity> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.AI.CurrentTarget component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<_Project.Develop.Runtime.Entities.Entity>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddCurrentTarget()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.AI.CurrentTarget() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<_Project.Develop.Runtime.Entities.Entity>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddCurrentTarget(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<_Project.Develop.Runtime.Entities.Entity> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.AI.CurrentTarget() {Value = value}); 
+		}
+
 	}
 }

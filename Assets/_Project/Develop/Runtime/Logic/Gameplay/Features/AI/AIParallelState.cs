@@ -1,0 +1,16 @@
+﻿using Assets._Project.Develop.Runtime.Utilities.StateMachineCore;
+
+namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI
+{
+    public class AIParallelState : ParallelState<IUpdatableState>, IUpdatableState
+    {
+        public AIParallelState(params IUpdatableState[] states) : base(states)
+        { }
+
+        public void Update(float deltaTime)
+        {
+            foreach (IUpdatableState state in States)
+                state.Update(deltaTime);
+        }
+    }
+}

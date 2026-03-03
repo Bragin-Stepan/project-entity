@@ -1,6 +1,7 @@
 ﻿using System;
 using _Project.Develop.Runtime.Entities;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.AI;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.AI.States;
 using _Project.Develop.Runtime.Utils.InputManagement;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using UnityEngine;
@@ -29,9 +30,11 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
 
         public void Run()
         {
-            _hero = _entitiesFactory.CreateTeleportWizard(Vector3.zero);
-            _ghost = _entitiesFactory.CreateGhost(Vector3.zero + Vector3.forward * 5);
+            _hero = _entitiesFactory.CreateHero(Vector3.zero);
+            _hero.AddCurrentTarget();
+            _brainsFactory.CreateMainHeroBrain(_hero, new NearestDamageableTargetSelector(_hero));
             
+            _ghost = _entitiesFactory.CreateGhost(Vector3.zero + Vector3.forward * 5);
             _brainsFactory.CreateGhostBrain(_ghost);
 
             _isRunning = true;
@@ -49,7 +52,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
                 return;
             
             GUI.Label(new Rect(10, 20, 200, 50), $"Health: {_hero.CurrentHealth.Value}/{_hero.MaxHealth.Value}");
-            GUI.Label(new Rect(10, 40, 200, 50), $"Energy: {_hero.CurrentEnergy.Value}/{_hero.MaxEnergy.Value}");
+            // GUI.Label(new Rect(10, 40, 200, 50), $"Energy: {_hero.CurrentEnergy.Value}/{_hero.MaxEnergy.Value}");
         }
     }
 }
