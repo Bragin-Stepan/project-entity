@@ -1,21 +1,19 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using _Project.Develop.Runtime.Entities;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.AI.States;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Damage;
 using _Project.Develop.Runtime.Utilities.Conditions;
-using UnityEngine;
 
-namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI.States
+namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Selectors
 {
-    public class NearestDamageableTargetSelector : ITargetSelector
+    public class LowestHealthTargetSelector : ITargetSelector
     {
         private readonly Entity _source;
-        private readonly Transform _sourceTransform;
 
-        public NearestDamageableTargetSelector(Entity entity)
+        public LowestHealthTargetSelector(Entity entity)
         {
             _source = entity;
-            _sourceTransform = entity.Transform;
         }
 
         public Entity SelectTargetFrom(IEnumerable<Entity> targets)
@@ -23,25 +21,25 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI.States
             IEnumerable<Entity> selectedTargets = FindSelectedTargets(targets);
 
             IEnumerable<Entity> enumerable = selectedTargets.ToList();
-            
+
             if (enumerable.Any() == false)
                 return null;
 
-            Entity closetsTarget = enumerable.First();
-            float minDistance = GetDistanceTo(closetsTarget);
+            Entity lowestHealthTarget = enumerable.First();
+            float minHealth = lowestHealthTarget.CurrentHealth.Value;
 
             foreach (Entity target in enumerable)
             {
-                float distance = GetDistanceTo(target);
+                float health = target.CurrentHealth.Value;
 
-                if (distance < minDistance)
+                if (health < minHealth)
                 {
-                    minDistance = distance;
-                    closetsTarget = target;
+                    minHealth = health;
+                    lowestHealthTarget = target;
                 }
             }
-            
-            return closetsTarget;
+
+            return lowestHealthTarget;
         }
 
         private IEnumerable<Entity> FindSelectedTargets(IEnumerable<Entity> targets)
@@ -58,7 +56,5 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI.States
                 return result;
             });
         }
-        
-        private float GetDistanceTo(Entity target) => (_sourceTransform.position - target.Transform.position).magnitude;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using _Project.Develop.Runtime.Entities;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.AI.States;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.Selectors;
 using _Project.Develop.Runtime.Utilities.Conditions;
 using _Project.Develop.Runtime.Utils.InputManagement;
 using _Project.Develop.Runtime.Utils.ReactiveManagement;
@@ -46,9 +47,22 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI
             return brain;
         }
         
-        public StateMachineBrain CreateDangerWizardBrain(Entity entity)
+        // самый лучший нейминг
+        public StateMachineBrain CreateDangerWizardBrain(Entity entity, ITargetSelector targetSelector) 
         {
-            return null;
+            AIStateMachine teleportStateMachine = CreateRandomTeleportStateMachine(entity);
+            
+            FindTargetState findTargetState = new (_entitiesLifeContext, entity, targetSelector);
+            AIParallelState parallelState = new (findTargetState, teleportStateMachine);
+
+            AIStateMachine rootStateMachine = new ();
+            rootStateMachine.AddState(parallelState);
+
+            StateMachineBrain brain = new (rootStateMachine);
+            
+            _aiBrainsContext.SetFor(entity, brain);
+
+            return brain;
         }
 
         public StateMachineBrain CreateMainHeroBrain(Entity entity, ITargetSelector targetSelector)
@@ -171,8 +185,8 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI
             
             AIStateMachine stateMachine = new ();
             
-            stateMachine.AddState(teleportTriggerState);
             stateMachine.AddState(emptyState);
+            stateMachine.AddState(teleportTriggerState);
             
             stateMachine.AddTransition(emptyState, teleportTriggerState, fromIdleToTeleportCondition);
             stateMachine.AddTransition(teleportTriggerState, emptyState, fromTeleportToIdleCondition);

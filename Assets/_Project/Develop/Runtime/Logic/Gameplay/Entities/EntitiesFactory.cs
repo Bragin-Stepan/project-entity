@@ -64,7 +64,8 @@ namespace _Project.Develop.Runtime.Entities
                 .AddAttackCanceledEvent()
                 .AddAttackCooldownInitialTime()
                 .AddAttackCooldownCurrentTime()
-                .AddInAttackCooldown();
+                .AddInAttackCooldown()
+                .AddCurrentTarget();
 
             ICompositeCondition canMove = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false));
@@ -218,6 +219,7 @@ namespace _Project.Develop.Runtime.Entities
                 .AddFindTeleportPointEvent()
                 .AddFindTeleportPointRequest()
                 .AddEndTeleportEvent()
+                .AddCurrentTarget()
 
                 .AddTeleportDamage(new ReactiveVariable<float>(50))
                 .AddTeleportDamageRadius(new ReactiveVariable<float>(6))
@@ -227,8 +229,8 @@ namespace _Project.Develop.Runtime.Entities
                 .AddTeleportSearchRadius(new ReactiveVariable<float>(6))
                 
                 .AddTeleportCooldownInitialTime(new ReactiveVariable<float>(3))
-                .AddTeleportCooldownCurrentTime()
-                .AddInTeleportCooldown()
+                .AddTeleportCooldownCurrentTime(new ReactiveVariable<float>(3))
+                .AddInTeleportCooldown(new ReactiveVariable<bool>(true))
 
                 .AddCurrentEnergy(new ReactiveVariable<int>(60))
                 .AddMaxEnergy(new ReactiveVariable<int>(60))
@@ -258,7 +260,9 @@ namespace _Project.Develop.Runtime.Entities
             ICompositeCondition canStartTeleport = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false))
                 .Add(new FuncCondition(() => entity.InTeleportCooldown.Value == false))
-                .Add(new FuncCondition(() => entity.CurrentEnergy.Value >= entity.TeleportEnergyCost.Value));
+                .Add(new FuncCondition(() => entity.CurrentEnergy.Value >= entity.TeleportEnergyCost.Value))
+                .Add(new FuncCondition(() => entity.CurrentEnergy.Value >= entity.MaxEnergy.Value * 0.4f))
+                .Add(new FuncCondition(() => entity.CurrentTarget.Value != null));
 
             ICompositeCondition mustDie = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.CurrentHealth.Value <= 0));
@@ -279,8 +283,6 @@ namespace _Project.Develop.Runtime.Entities
                 .AddMustSelfRelease(mustSelfRelease);
 
             entity
-                .AddSystem(new TeleportByInputSystem(_playerInput))
-
                 // .AddSystem(new RegenEnergyByValueSystem())
                 .AddSystem(new RegenEnergyByPercentageSystem())
                 .AddSystem(new UseEnergySystem())
@@ -288,7 +290,8 @@ namespace _Project.Develop.Runtime.Entities
 
                 .AddSystem(new TeleportStartByEnergySystem())
                 .AddSystem(new TeleportProcessSystem())
-                .AddSystem(new FindRandomPointForTeleportSystem())
+                // .AddSystem(new FindRandomPointForTeleportSystem())
+                .AddSystem(new FindTargetPointForTeleportSystem())
                 .AddSystem(new EndTeleportSystem())
                 .AddSystem(new InstantTeleportSystem())
                 .AddSystem(new TeleportCooldownTimerSystem())

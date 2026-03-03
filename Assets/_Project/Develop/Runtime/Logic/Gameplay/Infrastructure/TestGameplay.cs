@@ -1,7 +1,7 @@
 ﻿using System;
 using _Project.Develop.Runtime.Entities;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.AI;
-using _Project.Develop.Runtime.Logic.Gameplay.Features.AI.States;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.Selectors;
 using _Project.Develop.Runtime.Utils.InputManagement;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
 using UnityEngine;
@@ -26,17 +26,19 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
             _container.Resolve<IPlayerInput>().Enable();
             _entitiesFactory = _container.Resolve<EntitiesFactory>();
             _brainsFactory = _container.Resolve<BrainsFactory>();
+
+            _hero = _entitiesFactory.CreateHero(Vector3.zero);
+            _brainsFactory.CreateMainHeroBrain(_hero, new NearestDamageableTargetSelector(_hero));
+            
+            // _enemy = _entitiesFactory.CreateTeleportWizard(Vector3.zero + Vector3.forward * 5);
+            // _brainsFactory.CreateWizardBrain(_enemy);
+
+            _enemy = _entitiesFactory.CreateTeleportWizard(Vector3.zero + Vector3.forward * 5);
+            _brainsFactory.CreateDangerWizardBrain(_enemy, new LowestHealthTargetSelector(_enemy));
         }
 
         public void Run()
         {
-            _hero = _entitiesFactory.CreateHero(Vector3.zero);
-            _hero.AddCurrentTarget();
-            _brainsFactory.CreateMainHeroBrain(_hero, new NearestDamageableTargetSelector(_hero));
-            
-            _enemy = _entitiesFactory.CreateTeleportWizard(Vector3.zero + Vector3.forward * 5);
-            _brainsFactory.CreateWizardBrain(_enemy);
-
             _isRunning = true;
         }
 
