@@ -73,6 +73,8 @@ namespace Assets._Project.Develop.Runtime.Utilities.StateMachineCore
 
             if (_currentState == null)
                 SwitchState(_states[0]);
+            else
+                _currentState.State.Enter();
 
             _isRunning = true;
         }

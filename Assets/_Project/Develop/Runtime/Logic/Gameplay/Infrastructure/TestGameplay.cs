@@ -30,8 +30,8 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
             _hero = _entitiesFactory.CreateHero(Vector3.zero);
             _brainsFactory.CreateMainHeroBrain(_hero);
 
-            // _enemy = _entitiesFactory.CreateTeleportWizard(Vector3.zero + Vector3.forward * 5);
-            // _brainsFactory.CreateDangerWizardBrain(_enemy, new LowestHealthTargetSelector(_enemy));
+            _enemy = _entitiesFactory.CreateTeleportWizard(Vector3.zero + Vector3.forward * 5);
+            _brainsFactory.CreateDangerWizardBrain(_enemy, new LowestHealthTargetSelector(_enemy));
         }
 
         public void Run()

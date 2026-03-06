@@ -13,8 +13,12 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI.States
         public PlayerInputAttackTriggerState(Entity entity, IPlayerInput playerInput)
         {
             _playerInput = playerInput;
-
             _request = entity.StartAttackRequest;
+        }
+
+        public override void Enter()
+        {
+            base.Enter();
             _playerInput.Attack.Enter += OnAttack;
         }
         

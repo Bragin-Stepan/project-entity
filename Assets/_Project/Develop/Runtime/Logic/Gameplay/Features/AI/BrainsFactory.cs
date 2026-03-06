@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using _Project.Develop.Runtime.Entities;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.AI.States;
-using _Project.Develop.Runtime.Logic.Gameplay.Features.Selectors;
 using _Project.Develop.Runtime.Utilities.Conditions;
 using _Project.Develop.Runtime.Utils.InputManagement;
 using _Project.Develop.Runtime.Utils.ReactiveManagement;
@@ -56,6 +55,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI
             AIParallelState parallelState = new (findTargetState, teleportStateMachine);
 
             AIStateMachine rootStateMachine = new ();
+
             rootStateMachine.AddState(parallelState);
 
             StateMachineBrain brain = new (rootStateMachine);
@@ -157,9 +157,10 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI
             return stateMachine;
         }
         
+        // На сколько хорошая идея дробить на маленькие стейтмашины?
         private AIStateMachine CreateSteeringAttackStateMachine(Entity entity)
         {
-            AIStateMachine steeringState = CreateSteeringInputStateMachine(entity);
+            AIStateMachine steeringState = CreateSteeringInputStateMachine(entity); // просто это уже 3 по вложенности
             PlayerInputAttackTriggerState attackTriggerState = new (entity, _playerInput);
             
             AIParallelState parallelState = new (steeringState, attackTriggerState);
