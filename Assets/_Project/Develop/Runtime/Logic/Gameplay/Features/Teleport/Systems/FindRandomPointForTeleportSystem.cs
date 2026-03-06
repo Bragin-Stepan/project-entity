@@ -44,6 +44,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.Systems
         private Vector3 GetRandomPointInRadius(Vector3 center, float radius)
         {
             Vector2 randomPoint = Random.insideUnitCircle * radius;
+            
             return center + new Vector3(randomPoint.x, 0f, randomPoint.y);
         }
     }

@@ -28,6 +28,7 @@
 # Visual Studio cache directory
 .vs/
 .agent/
+.agents/
 
 # Gradle cache directory
 .gradle/
@@ -64,6 +65,9 @@ sysinfo.txt
 *.unitypackage
 *.unitypackage.meta
 *.app
+
+# AI
+Antigravity.Ide.Editor.csproj
 
 # Crashlytics generated file
 crashlytics-build.properties

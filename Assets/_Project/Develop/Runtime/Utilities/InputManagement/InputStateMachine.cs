@@ -28,7 +28,7 @@ namespace _Project.Develop.Runtime.Utils.InputManagement
             
             ICompositeCondition playerToUiStateCondition = new CompositeCondition(LogicOperationsUtils.Or)
                 .Add(new FuncCondition(() => _uiInput.IsEnabled));
-                // .Add(new FuncCondition(() => _playerHorseInput.IsEnabled));
+                // .Add(new FuncCondition(() => _playerHorseInput.IsEnabled)); просто как пример что включен только 1 вариант
 
             ICompositeCondition uiToPlayerStateCondition = new CompositeCondition(LogicOperationsUtils.Or)
                 .Add(new FuncCondition(() => _playerInput.IsEnabled));

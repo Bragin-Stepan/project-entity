@@ -46,7 +46,8 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.Systems
 
         private void OnEndTeleport()
         {
-            if (_radius <= 0 || _damage <= 0) return;
+            if (_radius <= 0 || _damage <= 0)
+                return;
 
             int count = Physics.OverlapSphereNonAlloc(
                 _toPoint.position,
