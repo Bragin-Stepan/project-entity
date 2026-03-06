@@ -22,14 +22,12 @@ namespace _Project.Develop.Runtime.Entities
         private readonly EntitiesLifeContext _entitiesLifeContext;
         private readonly MonoEntitiesFactory _monoEntitiesFactory;
         private readonly CollidersRegistryService _collidersRegistryService;
-        private readonly IPlayerInput _playerInput;
 
         public EntitiesFactory(DIContainer container)
         {
             _collidersRegistryService = container.Resolve<CollidersRegistryService>();
             _entitiesLifeContext = container.Resolve<EntitiesLifeContext>();
             _monoEntitiesFactory = container.Resolve<MonoEntitiesFactory>();
-            _playerInput = container.Resolve<IPlayerInput>();
         }
 
         public Entity CreateHero(Vector3 position)
@@ -58,7 +56,7 @@ namespace _Project.Develop.Runtime.Entities
                 .AddStartAttackRequest()
                 .AddStartAttackEvent()
                 .AddEndAttackEvent()
-                .AddAttackDelayTime(new ReactiveVariable<float>(1))
+                .AddAttackDelayTime(new ReactiveVariable<float>(0.1f))
                 .AddAttackDelayEndEvent()
                 .AddInstantAttackDamage(new ReactiveVariable<float>(50))
                 .AddAttackCanceledEvent()

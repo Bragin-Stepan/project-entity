@@ -10,21 +10,18 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI.States
     {
         private readonly IPlayerInput _playerInput;
         
-        private ReactiveVariable<Vector3> _rotateDirection;
         private ReactiveVariable<Vector3> _moveDirection;
         
         public PlayerInputMovementState(Entity entity, IPlayerInput playerInput)
         {
             _playerInput = playerInput;
-
-            _rotateDirection = entity.RotateDirection;
+            
             _moveDirection = entity.MoveDirection;
         }
 
         public void Update(float deltaTime)
         {
             _moveDirection.Value = new Vector3(_playerInput.Move.Value.x, 0, _playerInput.Move.Value.y);
-            _rotateDirection.Value = new Vector3(_playerInput.Move.Value.x, 0, _playerInput.Move.Value.y);
         }
 
         public override void Exit()

@@ -65,19 +65,52 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI
             return brain;
         }
 
-        public StateMachineBrain CreateMainHeroBrain(Entity entity, ITargetSelector targetSelector)
+        public StateMachineBrain CreateArcheroHeroBrain(Entity entity, ITargetSelector targetSelector)
         {
             AIStateMachine combatState = CreateAutoAttackStateMachine(entity);
             PlayerInputMovementState movementState = new (entity, _playerInput);
-
+        
             ReactiveVariable<Entity> currentTarget = entity.CurrentTarget;
-
+        
             ICompositeCondition fromMovementToCombatStateCondition = new CompositeCondition()
                 .Add(new FuncCondition(() => currentTarget.Value != null))
                 .Add(new FuncCondition(() => _playerInput.Move.Value == Vector2.zero));
             
             ICompositeCondition fromCombatToMovementStateCondition = new CompositeCondition(LogicOperationsUtils.Or)
                 .Add(new FuncCondition(() => currentTarget.Value == null))
+                .Add(new FuncCondition(() => _playerInput.Move.Value != Vector2.zero));
+        
+            AIStateMachine behaviour = new ();
+            
+            behaviour.AddState(combatState);
+            behaviour.AddState(movementState);
+            
+            behaviour.AddTransition(combatState, movementState, fromCombatToMovementStateCondition);
+            behaviour.AddTransition(movementState, combatState, fromMovementToCombatStateCondition);
+        
+            FindTargetState findTargetState = new (_entitiesLifeContext, entity, targetSelector);
+            AIParallelState parallelState = new (findTargetState, behaviour);
+        
+            AIStateMachine rootStateMachine = new ();
+            
+            rootStateMachine.AddState(parallelState);
+            
+            StateMachineBrain brain = new (rootStateMachine);
+            
+            _aiBrainsContext.SetFor(entity, brain);
+        
+            return brain;
+        }
+        
+        public StateMachineBrain CreateMainHeroBrain(Entity entity)
+        {
+            AIStateMachine combatState = CreateSteeringAttackStateMachine(entity);
+            PlayerInputMovementState movementState = new (entity, _playerInput);
+            
+            ICompositeCondition fromMovementToCombatStateCondition = new CompositeCondition()
+                .Add(new FuncCondition(() => _playerInput.Move.Value == Vector2.zero));
+            
+            ICompositeCondition fromCombatToMovementStateCondition = new CompositeCondition()
                 .Add(new FuncCondition(() => _playerInput.Move.Value != Vector2.zero));
 
             AIStateMachine behaviour = new ();
@@ -88,15 +121,8 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI
             behaviour.AddTransition(combatState, movementState, fromCombatToMovementStateCondition);
             behaviour.AddTransition(movementState, combatState, fromMovementToCombatStateCondition);
 
-            FindTargetState findTargetState = new (_entitiesLifeContext, entity, targetSelector);
-            AIParallelState parallelState = new (findTargetState, behaviour);
+            StateMachineBrain brain = new (behaviour);
 
-            AIStateMachine rootStateMachine = new ();
-            
-            rootStateMachine.AddState(parallelState);
-            
-            StateMachineBrain brain = new (rootStateMachine);
-            
             _aiBrainsContext.SetFor(entity, brain);
 
             return brain;
@@ -128,6 +154,42 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.AI
             stateMachine.AddTransition(randomMovementState, emptyState, movementTimerEndedCondition);
             stateMachine.AddTransition(emptyState, randomMovementState, idleTimerEndedCondition);
             
+            return stateMachine;
+        }
+        
+        private AIStateMachine CreateSteeringAttackStateMachine(Entity entity)
+        {
+            AIStateMachine steeringState = CreateSteeringInputStateMachine(entity);
+            PlayerInputAttackTriggerState attackTriggerState = new (entity, _playerInput);
+            
+            AIParallelState parallelState = new (steeringState, attackTriggerState);
+            
+            AIStateMachine stateMachine = new ();
+
+            stateMachine.AddState(parallelState);
+            
+            return stateMachine;
+        }
+
+        private AIStateMachine CreateSteeringInputStateMachine(Entity entity)
+        {
+            EmptyState emptyState = new ();
+            PlayerInputRotationState rotationState = new (entity, _playerInput);
+
+            ICondition fromIdleToRotateStateCondition = new CompositeCondition()
+                .Add(new FuncCondition(() => _playerInput.Look.Value != Vector2.zero));
+
+            ICondition fromRotateToIdleStateCondition = new CompositeCondition()
+                .Add(new FuncCondition(() => _playerInput.Look.Value == Vector2.zero));
+
+            AIStateMachine stateMachine = new ();
+            
+            stateMachine.AddState(emptyState);
+            stateMachine.AddState(rotationState);
+
+            stateMachine.AddTransition(rotationState, emptyState, fromRotateToIdleStateCondition);
+            stateMachine.AddTransition(emptyState, rotationState, fromIdleToRotateStateCondition);
+
             return stateMachine;
         }
 
