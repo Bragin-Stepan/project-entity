@@ -466,6 +466,30 @@ namespace _Project.Develop.Runtime.Entities
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.TeleportDamageMask() {Value = value}); 
 		}
 
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.Teams.Team TeamC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Teams.Team>();
+
+		public _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<_Project.Develop.Runtime.Logic.Gameplay.Features.Teams.Teams> Team => TeamC.Value;
+
+		public bool TryGetTeam(out _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<_Project.Develop.Runtime.Logic.Gameplay.Features.Teams.Teams> value)
+		{
+			bool result = TryGetComponent(out _Project.Develop.Runtime.Logic.Gameplay.Features.Teams.Team component);
+			if(result)
+				value = component.Value;
+			else
+				value = default(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<_Project.Develop.Runtime.Logic.Gameplay.Features.Teams.Teams>);
+			return result;
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTeam()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teams.Team() { Value = new _Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<_Project.Develop.Runtime.Logic.Gameplay.Features.Teams.Teams>() }); 
+		}
+
+		public _Project.Develop.Runtime.Entities.Entity AddTeam(_Project.Develop.Runtime.Utils.ReactiveManagement.ReactiveVariable<_Project.Develop.Runtime.Logic.Gameplay.Features.Teams.Teams> value)
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Teams.Team() {Value = value}); 
+		}
+
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.CapsuleColliderComponent CapsuleColliderC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.CapsuleColliderComponent>();
 
 		public UnityEngine.CapsuleCollider CapsuleCollider => CapsuleColliderC.Value;
@@ -808,6 +832,13 @@ namespace _Project.Develop.Runtime.Entities
 		public _Project.Develop.Runtime.Entities.Entity AddCanJump(_Project.Develop.Runtime.Utilities.Conditions.ICompositeCondition value)
 		{
 			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.Movement.CanJump() {Value = value}); 
+		}
+
+		public _Project.Develop.Runtime.Logic.Gameplay.Features.MainHero.IsMainHero IsMainHeroC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.MainHero.IsMainHero>();
+
+		public _Project.Develop.Runtime.Entities.Entity AddIsMainHero()
+		{
+			return AddComponent(new _Project.Develop.Runtime.Logic.Gameplay.Features.MainHero.IsMainHero() ); 
 		}
 
 		public _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.CurrentHealth CurrentHealthC => GetComponent<_Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.CurrentHealth>();

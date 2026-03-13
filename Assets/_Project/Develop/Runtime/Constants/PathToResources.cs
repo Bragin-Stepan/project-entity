@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using _Project.Develop.Runtime.Configs.Gameplay.Entities;
 using _Project.Develop.Runtime.Configs.Meta;
 using _Project.Develop.Runtime.UI.Common;
 using _Project.Develop.Runtime.UI.Features.LevelsMenuPopup;
@@ -44,6 +45,9 @@ namespace Assets._Project.Develop.Runtime.Utilities.SceneManagement
         {
             { typeof(StartWalletConfigSO), "Configs/Meta/Wallet/StartWalletConfig" },
             { typeof(CurrencyIconsConfigSO), "Configs/Meta/Wallet/CurrencyIconsConfig" },
+            { typeof(HeroConfigSO), "Configs/Gameplay/Entities/HeroConfig" },
+            { typeof(GhostConfigSO), "Configs/Gameplay/Entities/GhostConfig" },
+            { typeof(WizardConfigSO), "Configs/Gameplay/Entities/WizardConfig" },
         };
         
         private static readonly Dictionary<Type, string> _uiPaths = new()

@@ -1,9 +1,14 @@
 ﻿using System;
+using _Project.Develop.Runtime.Configs.Gameplay.Entities;
 using _Project.Develop.Runtime.Entities;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.AI;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.Enemies;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.MainHero;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Selectors;
 using _Project.Develop.Runtime.Utils.InputManagement;
 using Assets._Project.Develop.Runtime.Infrastructure.DI;
+using Assets._Project.Develop.Runtime.Utilities.AssetsManagement;
+using Assets._Project.Develop.Runtime.Utilities.ConfigsManagement;
 using UnityEngine;
 
 namespace _Project.Develop.Runtime.Logic.Gameplay.Features
@@ -11,7 +16,8 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
     public class TestGameplay : MonoBehaviour
     {
         private DIContainer _container;
-        private EntitiesFactory _entitiesFactory;
+        private EnemiesFactory _enemiesFactory;
+        private MainHeroFactory _mainHeroFactory;
         private BrainsFactory _brainsFactory;
 
         private Entity _hero;
@@ -24,14 +30,15 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features
             _container = container;
             
             _container.Resolve<IPlayerInput>().Enable();
-            _entitiesFactory = _container.Resolve<EntitiesFactory>();
+
+            _enemiesFactory = _container.Resolve<EnemiesFactory>();
+            _mainHeroFactory = _container.Resolve<MainHeroFactory>();
             _brainsFactory = _container.Resolve<BrainsFactory>();
 
-            _hero = _entitiesFactory.CreateHero(Vector3.zero);
-            _brainsFactory.CreateMainHeroBrain(_hero);
-
-            _enemy = _entitiesFactory.CreateTeleportWizard(Vector3.zero + Vector3.forward * 5);
-            _brainsFactory.CreateDangerWizardBrain(_enemy, new LowestHealthTargetSelector(_enemy));
+            _hero = _mainHeroFactory.Create(Vector3.zero);
+            _enemy = _enemiesFactory.Create(
+                Vector3.zero + Vector3.forward * 5,
+                _container.Resolve<ConfigsProviderService>().GetConfig<WizardConfigSO>());
         }
 
         public void Run()

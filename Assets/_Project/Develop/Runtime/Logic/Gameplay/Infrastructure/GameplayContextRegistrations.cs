@@ -1,5 +1,7 @@
 ﻿using _Project.Develop.Runtime.Entities;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.AI;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.Enemies;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.MainHero;
 using _Project.Develop.Runtime.UI;
 using _Project.Develop.Runtime.UI.Core;
 using _Project.Develop.Runtime.UI.Screens.Gameplay;
@@ -25,11 +27,16 @@ namespace Assets._Project.Develop.Runtime.Gameplay.Infrastructure
             container.RegisterAsSingle(CreateAIBrainContext);
             container.RegisterAsSingle(CreateBrainsFactory);
             container.RegisterAsSingle(CreateMonoEntitiesFactory).NonLazy();
+            container.RegisterAsSingle(CreateMainHeroFactory);
+            container.RegisterAsSingle(CreateEnemiesFactory);
         }
         
         private static AIBrainsContext CreateAIBrainContext(DIContainer c) => new();
         private static BrainsFactory CreateBrainsFactory(DIContainer c) => new(c);
         private static EntitiesLifeContext CreateEntitiesLifeContext(DIContainer c) => new();
+
+        private static EnemiesFactory CreateEnemiesFactory(DIContainer c) => new (c);
+        private static MainHeroFactory CreateMainHeroFactory(DIContainer c) => new (c);
 
         private static EntitiesFactory CreateEntitiesFactory(DIContainer c) => new(c);
         

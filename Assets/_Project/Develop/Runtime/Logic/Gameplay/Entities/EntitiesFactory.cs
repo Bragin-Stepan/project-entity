@@ -1,4 +1,5 @@
-﻿using _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.Systems;
+﻿using _Project.Develop.Runtime.Configs.Gameplay.Entities;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.Systems;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.Systems.Shoot;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Damage;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Energy.Systems;
@@ -30,7 +31,7 @@ namespace _Project.Develop.Runtime.Entities
             _monoEntitiesFactory = container.Resolve<MonoEntitiesFactory>();
         }
 
-        public Entity CreateHero(Vector3 position)
+        public Entity CreateHero(Vector3 position, HeroConfigSO config)
         {
             Entity entity = CreateEmpty();
 
@@ -39,31 +40,30 @@ namespace _Project.Develop.Runtime.Entities
             entity
                 .AddMoveDirection()
                 .AddRotateDirection()
-                .AddMoveSpeed(new ReactiveVariable<float>(10))
-                .AddRotationSpeed(new ReactiveVariable<float>(800))
-                .AddMaxHealth(new ReactiveVariable<float>(150))
-                .AddCurrentHealth(new ReactiveVariable<float>(150))
+                .AddMoveSpeed(new ReactiveVariable<float>(config.MoveSpeed))
+                .AddRotationSpeed(new ReactiveVariable<float>(config.RotationSpeed))
+                .AddMaxHealth(new ReactiveVariable<float>(config.MaxHealth))
+                .AddCurrentHealth(new ReactiveVariable<float>(config.MaxHealth))
                 .AddTakeDamageRequest()
                 .AddTakeDamageEvent()
                 .AddIsDead()
                 .AddIsMoving()
                 .AddInDeathProcess()
-                .AddDeathProcessInitialTime(new ReactiveVariable<float>(2))
+                .AddDeathProcessInitialTime(new ReactiveVariable<float>(config.DeathProcessTime))
                 .AddDeathProcessCurrentTime()
-                .AddAttackProcessInitialTime(new ReactiveVariable<float>(1))
+                .AddAttackProcessInitialTime(new ReactiveVariable<float>(config.AttackProcessTime))
                 .AddAttackProcessCurrentTime()
                 .AddInAttackProcess()
                 .AddStartAttackRequest()
                 .AddStartAttackEvent()
                 .AddEndAttackEvent()
-                .AddAttackDelayTime(new ReactiveVariable<float>(0.1f))
+                .AddAttackDelayTime(new ReactiveVariable<float>(config.AttackDelayTime))
                 .AddAttackDelayEndEvent()
-                .AddInstantAttackDamage(new ReactiveVariable<float>(50))
+                .AddInstantAttackDamage(new ReactiveVariable<float>(config.InstantAttackDamage))
                 .AddAttackCanceledEvent()
                 .AddAttackCooldownInitialTime()
                 .AddAttackCooldownCurrentTime()
-                .AddInAttackCooldown()
-                .AddCurrentTarget();
+                .AddInAttackCooldown();
 
             ICompositeCondition canMove = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false));
@@ -121,12 +121,10 @@ namespace _Project.Develop.Runtime.Entities
                 .AddSystem(new DisableCollidersOnDeathSystem())
                 .AddSystem(new SelfReleaseSystem(_entitiesLifeContext));
 
-            _entitiesLifeContext.Add(entity);
-
             return entity;
         }
 
-        public Entity CreateGhost(Vector3 position)
+        public Entity CreateGhost(Vector3 position, GhostConfigSO config)
         {
             Entity entity = CreateEmpty();
 
@@ -138,17 +136,17 @@ namespace _Project.Develop.Runtime.Entities
                 .AddContactEntitiesBuffer(new Buffer<Entity>(64))
                 .AddMoveDirection()
                 .AddRotateDirection()
-                .AddMoveSpeed(new ReactiveVariable<float>(10))
-                .AddRotationSpeed(new ReactiveVariable<float>(800))
-                .AddMaxHealth(new ReactiveVariable<float>(50))
-                .AddCurrentHealth(new ReactiveVariable<float>(50))
-                .AddBodyContactDamage(new ReactiveVariable<float>(50))
+                .AddMoveSpeed(new ReactiveVariable<float>(config.MoveSpeed))
+                .AddRotationSpeed(new ReactiveVariable<float>(config.RotationSpeed))
+                .AddMaxHealth(new ReactiveVariable<float>(config.MaxHealth))
+                .AddCurrentHealth(new ReactiveVariable<float>(config.MaxHealth))
+                .AddBodyContactDamage(new ReactiveVariable<float>(config.BodyContactDamage))
                 .AddTakeDamageRequest()
                 .AddTakeDamageEvent()
                 .AddIsDead()
                 .AddIsMoving()
                 .AddInDeathProcess()
-                .AddDeathProcessInitialTime(new ReactiveVariable<float>(2))
+                .AddDeathProcessInitialTime(new ReactiveVariable<float>(config.DeathProcessTime))
                 .AddDeathProcessCurrentTime();
 
             ICompositeCondition canMove = new CompositeCondition()
@@ -190,12 +188,10 @@ namespace _Project.Develop.Runtime.Entities
                 .AddSystem(new DisableCollidersOnDeathSystem())
                 .AddSystem(new SelfReleaseSystem(_entitiesLifeContext));
 
-            _entitiesLifeContext.Add(entity);
-
             return entity;
         }
 
-        public Entity CreateTeleportWizard(Vector3 position)
+        public Entity CreateTeleportWizard(Vector3 position, WizardConfigSO config)
         {
             Entity entity = CreateEmpty();
 
@@ -206,8 +202,8 @@ namespace _Project.Develop.Runtime.Entities
                 .AddContactCollidersBuffer(new Buffer<Collider>(32))
                 .AddContactEntitiesBuffer(new Buffer<Entity>(32))
 
-                .AddMaxHealth(new ReactiveVariable<float>(150))
-                .AddCurrentHealth(new ReactiveVariable<float>(150))
+                .AddMaxHealth(new ReactiveVariable<float>(config.MaxHealth))
+                .AddCurrentHealth(new ReactiveVariable<float>(config.MaxHealth))
 
                 .AddTeleportSource(entity.Transform)
                 .AddTeleportToPoint(entity.Transform)
@@ -219,34 +215,33 @@ namespace _Project.Develop.Runtime.Entities
                 .AddEndTeleportEvent()
                 .AddCurrentTarget()
 
-                .AddTeleportDamage(new ReactiveVariable<float>(50))
-                .AddTeleportDamageRadius(new ReactiveVariable<float>(6))
+                .AddTeleportDamage(new ReactiveVariable<float>(config.TeleportDamage))
+                .AddTeleportDamageRadius(new ReactiveVariable<float>(config.TeleportDamageRadius))
                 .AddTeleportDamageMask(Layers.CharactersMask)
 
-                .AddTeleportEnergyCost(new ReactiveVariable<int>(20))
-                .AddTeleportSearchRadius(new ReactiveVariable<float>(6))
+                .AddTeleportEnergyCost(new ReactiveVariable<int>(config.TeleportEnergyCast))
+                .AddTeleportSearchRadius(new ReactiveVariable<float>(config.TeleportSearchRadius))
                 
-                .AddTeleportCooldownInitialTime(new ReactiveVariable<float>(3))
-                .AddTeleportCooldownCurrentTime(new ReactiveVariable<float>(3))
+                .AddTeleportCooldownInitialTime(new ReactiveVariable<float>(config.TeleportCooldownTime))
+                .AddTeleportCooldownCurrentTime(new ReactiveVariable<float>(config.TeleportCooldownTime))
                 .AddInTeleportCooldown(new ReactiveVariable<bool>(true))
 
-                .AddCurrentEnergy(new ReactiveVariable<int>(60))
-                .AddMaxEnergy(new ReactiveVariable<int>(60))
+                .AddCurrentEnergy(new ReactiveVariable<int>(config.MaxEnergy))
+                .AddMaxEnergy(new ReactiveVariable<int>(config.MaxEnergy))
                 .AddUseEnergyEvent()
                 .AddUseEnergyRequest()
                 .AddRegenEnergyEvent()
                 .AddRegenEnergyRequest()
-                .AddAutoRegenEnergyAmount(new ReactiveVariable<int>(10))
+                .AddAutoRegenEnergyAmount(new ReactiveVariable<int>(config.RegenEnergyAmount))
                 .AddIsAutoRegenEnergy(new ReactiveVariable<bool>(true))
                 .AddEnergyAutoRegenCurrentTime()
-                .AddEnergyAutoRegenInitialTime(new ReactiveVariable<float>(3))
-
-                .AddBodyContactDamage(new ReactiveVariable<float>(50))
+                .AddEnergyAutoRegenInitialTime(new ReactiveVariable<float>(config.AutoRegenEnergyTime))
+                
                 .AddTakeDamageRequest()
                 .AddTakeDamageEvent()
                 .AddIsDead()
                 .AddInDeathProcess()
-                .AddDeathProcessInitialTime(new ReactiveVariable<float>(2))
+                .AddDeathProcessInitialTime(new ReactiveVariable<float>(config.DeathProcessTime))
                 .AddDeathProcessCurrentTime();
 
             ICompositeCondition canRegenEnergy = new CompositeCondition()
@@ -298,7 +293,7 @@ namespace _Project.Develop.Runtime.Entities
                 .AddSystem(new BodyContactsDetectingSystem())
                 .AddSystem(new BodyContactsEntitiesFilterSystem(_collidersRegistryService))
 
-                .AddSystem(new DealDamageOnContactSystem())
+                // .AddSystem(new DealDamageOnContactSystem())
                 .AddSystem(new ApplyDamageSystem())
 
                 .AddSystem(new DeathSwitcherSystem())
@@ -306,8 +301,6 @@ namespace _Project.Develop.Runtime.Entities
 
                 .AddSystem(new DisableCollidersOnDeathSystem())
                 .AddSystem(new SelfReleaseSystem(_entitiesLifeContext));
-
-            _entitiesLifeContext.Add(entity);
 
             return entity;
         }
