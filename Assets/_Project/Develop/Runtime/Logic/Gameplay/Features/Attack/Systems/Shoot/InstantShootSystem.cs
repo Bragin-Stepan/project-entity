@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using _Project.Develop.Runtime.Entities;
 using _Project.Develop.Runtime.Utils.ReactiveManagement;
 using _Project.Develop.Runtime.Utils.ReactiveManagement.Event;
@@ -38,7 +38,7 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.Systems.Shoot
 
         private void OnAttackDelayEnd()
         {
-            _entitiesFactory.CreateProjectile(_shootPoint.position, _shootPoint.forward, _damage.Value);
+            _entitiesFactory.CreateProjectile(_shootPoint.position, _shootPoint.forward, _damage.Value, _entity);
         }
 
         public void OnDispose()

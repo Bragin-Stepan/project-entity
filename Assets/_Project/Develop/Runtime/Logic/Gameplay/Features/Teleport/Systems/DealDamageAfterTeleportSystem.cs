@@ -64,6 +64,9 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.Systems
                     && contactEntity != _entity
                     && contactEntity.TryGetTakeDamageRequest(out ReactiveEvent<float> takeDamageRequest))
                 {
+                    if (EntitiesHelper.AreOnSameTeam(contactEntity, _entity))
+                        continue;
+
                     takeDamageRequest.Invoke(_damage);
                 }
             }

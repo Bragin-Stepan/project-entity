@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using _Project.Develop.Runtime.Entities;
 using _Project.Develop.Runtime.Utilities;
 using _Project.Develop.Runtime.Utils.ReactiveManagement;
@@ -33,6 +33,9 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Damage
                 if(_processedEntities.Contains(contactEntity) == false)
                 {
                     _processedEntities.Add(contactEntity);
+
+                    if (EntitiesHelper.AreOnSameTeam(contactEntity, _entity))
+                        continue;
                     
                     if (contactEntity.TryGetTakeDamageRequest(out ReactiveEvent<float> takeDamageRequest))
                         takeDamageRequest.Invoke(_damage.Value);

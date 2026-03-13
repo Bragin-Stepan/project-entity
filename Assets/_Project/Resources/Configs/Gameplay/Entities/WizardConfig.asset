@@ -17,9 +17,9 @@ MonoBehaviour:
   <RotationSpeed>k__BackingField: 900
   <MaxHealth>k__BackingField: 100
   <TeleportDamage>k__BackingField: 50
-  <TeleportDamageRadius>k__BackingField: 6
-  <TeleportEnergyCast>k__BackingField: 50
-  <TeleportSearchRadius>k__BackingField: 50
+  <TeleportDamageRadius>k__BackingField: 4
+  <TeleportEnergyCast>k__BackingField: 20
+  <TeleportSearchRadius>k__BackingField: 4
   <TeleportCooldownTime>k__BackingField: 3
   <MaxEnergy>k__BackingField: 60
   <RegenEnergyAmount>k__BackingField: 10

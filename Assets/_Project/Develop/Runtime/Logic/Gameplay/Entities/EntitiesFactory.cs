@@ -1,4 +1,4 @@
-﻿using _Project.Develop.Runtime.Configs.Gameplay.Entities;
+using _Project.Develop.Runtime.Configs.Gameplay.Entities;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.Systems;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Attack.Systems.Shoot;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Damage;
@@ -7,6 +7,7 @@ using _Project.Develop.Runtime.Logic.Gameplay.Features.Input;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Lifetime.Systems;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Movement;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Sensors.Systems;
+using _Project.Develop.Runtime.Logic.Gameplay.Features.Teams;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.Teleport.Systems;
 using _Project.Develop.Runtime.Utilities;
 using _Project.Develop.Runtime.Utilities.Conditions;
@@ -305,7 +306,7 @@ namespace _Project.Develop.Runtime.Entities
             return entity;
         }
 
-        public Entity CreateProjectile(Vector3 position, Vector3 direction, float damage)
+        public Entity CreateProjectile(Vector3 position, Vector3 direction, float damage, Entity owner)
         {
             Entity entity = CreateEmpty();
 
@@ -320,10 +321,12 @@ namespace _Project.Develop.Runtime.Entities
                 .AddMoveSpeed(new ReactiveVariable<float>(16))
                 .AddRotationSpeed(new ReactiveVariable<float>(9999))
                 .AddBodyContactDamage(new ReactiveVariable<float>(damage))
+                .AddTeam(new ReactiveVariable<Teams>(owner.Team.Value))
                 .AddIsDead()
                 .AddIsMoving()
                 .AddDeathMask(Layers.CharactersMask | Layers.EnvironmentMask)
-                .AddIsTouchDeathMask();
+                .AddIsTouchDeathMask()
+                .AddIsTouchAnotherTeam();
 
             ICompositeCondition canMove = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false));
@@ -331,7 +334,8 @@ namespace _Project.Develop.Runtime.Entities
             ICompositeCondition canRotate = new CompositeCondition()
                 .Add(new FuncCondition(() => entity.IsDead.Value == false));
 
-            ICompositeCondition mustDie = new CompositeCondition()
+            ICompositeCondition mustDie = new CompositeCondition(LogicOperationsUtils.Or)
+                .Add(new FuncCondition(() => entity.IsTouchAnotherTeam.Value))
                 .Add(new FuncCondition(() => entity.IsTouchDeathMask.Value));
 
             ICompositeCondition mustSelfRelease = new CompositeCondition()
@@ -354,6 +358,7 @@ namespace _Project.Develop.Runtime.Entities
                 .AddSystem(new DeathMaskTouchDetectorSystem())
                 .AddSystem(new DeathSwitcherSystem())
 
+                .AddSystem(new AnotherTeamTouchDetectorSystem())
                 .AddSystem(new DisableCollidersOnDeathSystem())
                 .AddSystem(new SelfReleaseSystem(_entitiesLifeContext));
 
