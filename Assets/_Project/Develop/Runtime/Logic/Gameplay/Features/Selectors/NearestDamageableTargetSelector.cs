@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using _Project.Develop.Runtime.Entities;
 using _Project.Develop.Runtime.Logic.Gameplay.Features.AI.States;
@@ -54,7 +54,9 @@ namespace _Project.Develop.Runtime.Logic.Gameplay.Features.Selectors
                 if (target.TryGetCanApplyDamage(out ICompositeCondition value))
                     result = result && value.Evaluate();
 
-                result = result && (target != _source);
+                result = result 
+                    && (target != _source) 
+                    && (EntitiesHelper.AreOnSameTeam(_source, target) == false);
 
                 return result;
             });
